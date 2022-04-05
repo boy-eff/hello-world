@@ -1,4 +1,6 @@
-namespace Domain.Entities.Users
+
+
+namespace Domain.Entities
 {
     public partial class User
     {
@@ -6,6 +8,8 @@ namespace Domain.Entities.Users
         {
             UserName = userName;
             Password = password;
+            WordDictionary = new WordDictionary(this);
+            WordCollections = new HashSet<WordCollection>();
         }
     }
 }
