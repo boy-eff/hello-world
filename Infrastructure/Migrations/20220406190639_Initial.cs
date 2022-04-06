@@ -83,7 +83,7 @@ namespace Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "WordToWordCollection(Map)",
+                name: "WordToWordCollection",
                 columns: table => new
                 {
                     WordDictionariesId = table.Column<int>(type: "integer", nullable: false),
@@ -91,15 +91,15 @@ namespace Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_WordToWordCollection(Map)", x => new { x.WordDictionariesId, x.WordsId });
+                    table.PrimaryKey("PK_WordToWordCollection", x => new { x.WordDictionariesId, x.WordsId });
                     table.ForeignKey(
-                        name: "FK_WordToWordCollection(Map)_WordDictionaries_WordDictionaries~",
+                        name: "FK_WordToWordCollection_WordDictionaries_WordDictionariesId",
                         column: x => x.WordDictionariesId,
                         principalTable: "WordDictionaries",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_WordToWordCollection(Map)_Words_WordsId",
+                        name: "FK_WordToWordCollection_Words_WordsId",
                         column: x => x.WordsId,
                         principalTable: "Words",
                         principalColumn: "Id",
@@ -123,15 +123,15 @@ namespace Infrastructure.Migrations
                 column: "WordCollectionId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_WordToWordCollection(Map)_WordsId",
-                table: "WordToWordCollection(Map)",
+                name: "IX_WordToWordCollection_WordsId",
+                table: "WordToWordCollection",
                 column: "WordsId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "WordToWordCollection(Map)");
+                name: "WordToWordCollection");
 
             migrationBuilder.DropTable(
                 name: "WordDictionaries");

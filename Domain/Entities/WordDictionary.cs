@@ -1,9 +1,9 @@
 namespace Domain.Entities
 {
-    public partial class WordDictionary : Base.BaseEntity
+    public class WordDictionary : Base.BaseEntity
     {
-        public int OwnerId { get; private set; }
-        public User Owner { get; private set; }
-        public ICollection<Word> Words { get; private set; }
+        public int OwnerId { get; set; }
+        public User Owner { get; set; }
+        public ICollection<Word> Words { get; set; }
     }
 }

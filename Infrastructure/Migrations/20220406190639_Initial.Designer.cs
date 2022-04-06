@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220406145310_Initial")]
+    [Migration("20220406190639_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -119,7 +119,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("WordsId");
 
-                    b.ToTable("WordToWordCollection(Map)", (string)null);
+                    b.ToTable("WordToWordCollection", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.Word", b =>
@@ -174,8 +174,7 @@ namespace Infrastructure.Migrations
                 {
                     b.Navigation("WordCollections");
 
-                    b.Navigation("WordDictionary")
-                        .IsRequired();
+                    b.Navigation("WordDictionary");
                 });
 
             modelBuilder.Entity("Domain.Entities.WordCollection", b =>

@@ -20,8 +20,6 @@ namespace API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetUsers()
         {
-            _context.Users.Add(new User("Jake", "pswrd"));
-            _context.SaveChanges();
             return Ok();
         }
     }
