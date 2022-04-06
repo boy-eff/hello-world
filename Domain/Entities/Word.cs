@@ -10,6 +10,6 @@ namespace Domain.Entities
         public string Translation { get; private set; }
         public int WordCollectionId { get; private set; }
         public WordCollection WordCollection { get; private set; }
-        public ICollection<WordDictionary> Dictionaries { get; private set; }
+        public ICollection<WordDictionary> WordDictionaries { get; private set; }
     }
 }
