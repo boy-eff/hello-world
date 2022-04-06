@@ -1,12 +1,15 @@
 using System;
 using System.Collections.Generic;
+
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Domain.Base
 {
-    public abstract class BaseEntity<TKey>
+    public abstract class BaseEntity
     {
-        public TKey? Id { get; protected set; }
+        [Key]
+        public int Id { get; protected set; }
     }
 }
