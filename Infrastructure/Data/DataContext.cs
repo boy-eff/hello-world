@@ -6,18 +6,19 @@ using Microsoft.EntityFrameworkCore;
 using Domain.Entities;
 using Microsoft.Extensions.Configuration;
 using System.Reflection;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace Infrastructure.Data
 {
-    public class DataContext : DbContext
+    public class DataContext : IdentityDbContext<AppUser, AppRole, int, IdentityUserClaim<int>, 
+                    AppUserToRole, IdentityUserLogin<int>, IdentityRoleClaim<int>, IdentityUserToken<int>>
     {
         private readonly IConfiguration _configuration;
         public DataContext(IConfiguration configuration)
         {
             _configuration = configuration;
         }
-
-        public DbSet<User> Users => Set<User>();
         public DbSet<Word> Words => Set<Word>();
         public DbSet<WordCollection> WordCollections => Set<WordCollection>();
         public DbSet<WordDictionary> WordDictionaries => Set<WordDictionary>();
@@ -28,10 +29,8 @@ namespace Infrastructure.Data
         }
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            
-            builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-
             base.OnModelCreating(builder);
+            builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
     }
 }

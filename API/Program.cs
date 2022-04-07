@@ -1,3 +1,4 @@
+using API.Extensions;
 using Domain.Entities;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<DataContext>();
+
+builder.Services.AddIdentityServices(builder.Configuration);
 
 var app = builder.Build();
 
