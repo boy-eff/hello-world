@@ -12,7 +12,6 @@ namespace Infrastructure.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<WordDictionary> builder)
         {
-
         }
     }
 }
