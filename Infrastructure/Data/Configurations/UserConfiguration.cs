@@ -8,9 +8,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Data.Configurations
 {
-    public class UserConfiguration : IEntityTypeConfiguration<User>
+    public class UserConfiguration : IEntityTypeConfiguration<AppUser>
     {
-        public void Configure(EntityTypeBuilder<User> builder)
+        public void Configure(EntityTypeBuilder<AppUser> builder)
         {
             builder
                 .HasOne(u => u.WordDictionary)

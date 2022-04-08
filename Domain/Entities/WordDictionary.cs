@@ -1,9 +1,10 @@
 namespace Domain.Entities
 {
-    public class WordDictionary : Base.BaseEntity
+    public class WordDictionary
     {
+        public int Id { get; set; }
         public int OwnerId { get; set; }
-        public User Owner { get; set; }
-        public ICollection<Word> Words { get; set; }
+        public AppUser Owner { get; set; }
+        public ICollection<WordToWordDictionary> Words { get; set; }
     }
 }

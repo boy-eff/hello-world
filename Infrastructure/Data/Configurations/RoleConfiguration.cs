@@ -8,10 +8,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Data.Configurations
 {
-    public class WordDictionaryConfiguration : IEntityTypeConfiguration<WordDictionary>
+    public class RoleConfiguration : IEntityTypeConfiguration<AppRole>
     {
-        public void Configure(EntityTypeBuilder<WordDictionary> builder)
+        public void Configure(EntityTypeBuilder<AppRole> builder)
         {
+            
         }
     }
 }

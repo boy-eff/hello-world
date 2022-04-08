@@ -1,14 +1,12 @@
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Identity;
 
 namespace Domain.Entities
 {
-    public class User : Base.BaseEntity
+    public class AppUser : IdentityUser<int>
     {
-        [Required]
-        public string UserName { get; set; }
-        [Required]
-        public string Password { get; set; }
         public WordDictionary WordDictionary { get; set; }
         public ICollection<WordCollection> WordCollections { get; set; }
+        public ICollection<AppUserToRole> UserRoles { get; set; }
     }
 }
