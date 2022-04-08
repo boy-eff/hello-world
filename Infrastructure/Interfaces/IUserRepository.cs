@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Domain.Base
+namespace Infrastructure.Interfaces
 {
-    public abstract class BaseEntity<TKey>
+    public interface IUserRepository
     {
-        public TKey? Id { get; protected set; }
+        
     }
 }
