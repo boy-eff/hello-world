@@ -20,6 +20,8 @@ builder.Services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
 
 builder.Services.AddIdentityServices(builder.Configuration);
 
+builder.Services.AddIdentityServices(builder.Configuration);
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
