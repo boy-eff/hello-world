@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Domain.Entities;
 using Infrastructure.Data;
+using Infrastructure.Interfaces;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -11,16 +13,20 @@ namespace API.Controllers
     public class UsersController : BaseApiController
     {
         private readonly DataContext _context;
-        public UsersController(DataContext context)
+        private readonly UserManager<AppUser> _userManager;
+        private readonly IUnitOfWork _unitOfWork;
+        public UsersController(DataContext context, UserManager<AppUser> userManager, IUnitOfWork unitOfWork)
         {
+            _unitOfWork = unitOfWork;
+            _userManager = userManager;
             _context = context;
-
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetUsers()
+        public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers()
         {
-            return Ok();
+            var users = await _unitOfWork.UserRepository.GetUsersAsync();
+            return Ok(users);
         }
     }
 }
