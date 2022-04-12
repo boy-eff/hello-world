@@ -19,12 +19,12 @@ export class RegisterComponent implements OnInit {
 
   initializeForm() {
     this.registerForm = this.fb.group({
-      "userName": new FormControl(null, Validators.required),
-      "Password": new FormControl(null, Validators.required),
-      "confirmPassword": new FormControl(null, [Validators.required, this.matchValues('Password')])
+      "userName": ['', Validators.required],
+      "password": ['', Validators.required],
+      "confirmPassword": ['', [Validators.required, this.matchValues('password')]]
     });
-    this.registerForm.controls["Password"].valueChanges.subscribe(() => {
-      this.registerForm.controls["confirmPassword"].updateValueAndValidity();
+    this.registerForm.controls.password.valueChanges.subscribe(() => {
+      this.registerForm.controls.confirmPassword.updateValueAndValidity();
     })
   }
 
@@ -37,7 +37,7 @@ export class RegisterComponent implements OnInit {
 
   register()
   {
-    this.accountService.register(this.registerForm.value);
+    this.accountService.register(this.registerForm.value).subscribe();
   }
 
 }
