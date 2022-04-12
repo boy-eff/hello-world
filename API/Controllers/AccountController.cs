@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using API.DTO;
+using API.Interfaces;
 using AutoMapper;
 using Domain.Entities;
 using Microsoft.AspNetCore.Identity;
@@ -16,8 +17,11 @@ namespace API.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly IMapper _mapper;
         private readonly SignInManager<AppUser> _signInManager;
-        public AccountController(UserManager<AppUser> userManager, IMapper mapper, SignInManager<AppUser> signInManager)
+        private readonly ITokenService _tokenService;
+        public AccountController(UserManager<AppUser> userManager, IMapper mapper,
+             SignInManager<AppUser> signInManager, ITokenService tokenService)
         {
+            _tokenService = tokenService;
             _signInManager = signInManager;
             _mapper = mapper;
             _userManager = userManager;
@@ -42,7 +46,7 @@ namespace API.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult> Login(LoginDto loginDto)
+        public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
         {
             var user = await _userManager.Users.SingleOrDefaultAsync(x => x.UserName == loginDto.UserName.ToLower());
             if (user == null)
@@ -53,8 +57,12 @@ namespace API.Controllers
             var result = await _signInManager.CheckPasswordSignInAsync(user, loginDto.Password, false);
 
             if (!result.Succeeded) return Unauthorized();
-
-            return Ok();
+            var resultUser = new UserDto
+            {
+                UserName = user.UserName,
+                Token = await _tokenService.CreateToken(user)
+            };
+            return Ok(resultUser);
         }
 
         private async Task<bool> UserExists(string username) 
