@@ -5,9 +5,19 @@
         <button type="button" class="btn btn-primary" routerLink="/login">Sign In</button>
         <button type="button" class="btn btn-secondary" routerLink="/register">Sign Up</button>
       </div>
-
-      <div *ngIf="(accountService.currentUser$ | async) as user">
-        <span class="text-lg" style="color: white;">Hello, {{user.userName | uppercase}}</span>
-      </div>
+      <ng-container *ngIf="(accountService.currentUser$ | async) as user">
+        <div class="btn-group" dropdown>
+          <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
+                  aria-controls="dropdown-basic">
+            {{user.userName}} <span class="caret"></span>
+          </button>
+          <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
+              role="menu" aria-labelledby="button-basic">
+            <li role="menuitem"><button class="dropdown-item" (click)="logout()">Edit profile</button></li>
+            <li role="menuitem"><button class="dropdown-item" (click)="logout()">Log Out</button>
+            </li>
+          </ul>
+        </div>
+      </ng-container>
     </div>
   </nav>
