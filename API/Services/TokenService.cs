@@ -21,7 +21,7 @@ namespace API.Services
             _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["JWT:Key"]));
         }
 
-        public async Task<string> CreateToken(AppUser user)
+        public string CreateToken(AppUser user)
         {
             var claims = new List<Claim>() 
             {

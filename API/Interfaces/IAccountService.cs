@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using API.DTO;
-using Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 
 namespace API.Interfaces
 {
-    public interface IUserService
+    public interface IAccountService
     {
-        Task<IdentityResult> CreateUserAsync(AppUser user, string password);
-        Task<bool> UserExistsAsync(string username);
+        Task<UserDto> Login(string username, string password);
+        Task<IdentityResult> Register(RegisterDto registerDto);
     }
 }

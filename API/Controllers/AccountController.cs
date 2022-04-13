@@ -16,8 +16,12 @@ namespace API.Controllers
     {
         private readonly ITokenService _tokenService;
         private readonly IUserService _userService;
-        public AccountController(IUserService userService, ITokenService tokenService)
+        private readonly IAccountService _accountService;
+
+        public AccountController(IUserService userService,
+         ITokenService tokenService, IAccountService accountService)
         {
+            _accountService = accountService;
             _userService = userService;
             _tokenService = tokenService;
         }
@@ -25,35 +29,16 @@ namespace API.Controllers
         [HttpPost("register")]
         public async Task<ActionResult> Register(RegisterDto registerDto)
         {
-            if (await _userService.UserExistsAsync(registerDto.UserName)) return BadRequest("Username is taken");
-            
-            var user = _userService.GetUserFromRegisterDto(registerDto);
-
-            var result = await _userService.CreateUserAsync(user, registerDto.Password);
-
-            if (!result.Succeeded) return BadRequest(result.Errors);
-
+            var result = await _accountService.Register(registerDto);
+            if (!result.Succeeded) return BadRequest();
             return Ok();
         }
 
         [HttpPost("login")]
         public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
         {
-            var user = await _userService.GetUserByUsername(loginDto.UserName);
-            if (user == null)
-            {
-                return Unauthorized("Invalid username");
-            }
-
-            var result = await _userService.CheckPasswordAsync(user, loginDto.Password);
-
-            if (!result.Succeeded) return Unauthorized();
-            var resultUser = new UserDto
-            {
-                UserName = user.UserName,
-                Token = await _tokenService.CreateToken(user)
-            };
-            return Ok(resultUser);
+            var result = await _accountService.Login(loginDto.UserName, loginDto.Password);
+            return Ok(result);
         }
     }
 }
