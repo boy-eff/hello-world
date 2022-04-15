@@ -26,7 +26,7 @@ namespace API.Middleware
             {
                 context.Response.ContentType = "application/json";
                 context.Response.StatusCode = (int)HttpStatusCode.Conflict;
-                await context.Response.WriteAsync("User is already exists");
+                await context.Response.WriteAsync("User already exists");
             }
             catch(InvalidCredentialsException)
             {

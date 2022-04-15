@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { AccountService } from '../_services/account.service';
+import { ValidatorsService } from '../_services/validators.service';
 
 @Component({
   selector: 'app-register',
@@ -9,7 +10,8 @@ import { AccountService } from '../_services/account.service';
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
-  constructor(private accountService: AccountService, private fb: FormBuilder) {
+  constructor(private accountService: AccountService, private fb: FormBuilder,
+      private validatorsService: ValidatorsService) {
     
    }
 
@@ -21,18 +23,11 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.fb.group({
       "userName": ['', Validators.required],
       "password": ['', Validators.required],
-      "confirmPassword": ['', [Validators.required, this.matchValues('password')]]
+      "confirmPassword": ['', [Validators.required, this.validatorsService.matchValues('password')]]
     });
     this.registerForm.controls.password.valueChanges.subscribe(() => {
       this.registerForm.controls.confirmPassword.updateValueAndValidity();
     })
-  }
-
-  matchValues(matchTo: string): ValidatorFn {
-    return (control: AbstractControl) => {
-      return control?.value === control?.parent?.controls[matchTo].value ? null : 
-      {isMatching: true}
-    }
   }
 
   register()

@@ -53,7 +53,6 @@ namespace API.Services
         public async Task<IdentityResult> Register(RegisterDto registerDto)
         {
             var user = _mapper.Map<AppUser>(registerDto);
-            user.UserName = registerDto.UserName.ToLower();
             if (await _userService.UserExistsAsync(user.UserName))
             {
                 throw new UserExistsException();
