@@ -1,10 +1,23 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container">
-      <a class="navbar-brand" href="#">HelloWorld</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <button type="button" class="btn btn-secondary">Sign Up</button>
-      
+      <a class="navbar-brand" routerLink="">HelloWorld</a>
+      <div *ngIf="(accountService.currentUser$ | async) === null">
+        <button type="button" class="btn btn-primary" routerLink="/login">Sign In</button>
+        <button type="button" class="btn btn-secondary" routerLink="/register">Sign Up</button>
+      </div>
+      <ng-container *ngIf="(accountService.currentUser$ | async) as user">
+        <div class="btn-group" dropdown>
+          <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
+                  aria-controls="dropdown-basic">
+            {{user.userName}} <span class="caret"></span>
+          </button>
+          <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
+              role="menu" aria-labelledby="button-basic">
+            <li role="menuitem"><button class="dropdown-item" (click)="logout()">Edit profile</button></li>
+            <li role="menuitem"><button class="dropdown-item" (click)="logout()">Log Out</button>
+            </li>
+          </ul>
+        </div>
+      </ng-container>
     </div>
   </nav>

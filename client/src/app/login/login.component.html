@@ -1,0 +1,16 @@
+<div class="row justify-content-center">
+    <h3 class="text-center">Sign In</h3>
+    <form [formGroup]="loginForm" class="form-group col-4" (ngSubmit)="login()">
+        <hr>
+
+        <app-text-input [label]="'Username'" [formControl]="loginForm.controls.userName"></app-text-input>
+        <div class="mt-2">
+            <app-text-input [label]="'Password'" [type]="'password'" [formControl]="loginForm.controls.password"></app-text-input>
+        </div>
+        <hr>
+        <button type="submit" 
+            class="btn btn-primary mx-auto d-block" 
+            [disabled]="!loginForm.valid">
+            Send</button>
+    </form>
+</div>

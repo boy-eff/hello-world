@@ -1,0 +1,24 @@
+<div class="row justify-content-center">
+    <h3 class="text-center">Sign Up</h3>
+    <form [formGroup]="registerForm" class="form-group col-4" (ngSubmit)="register()">
+        <hr>
+
+        <app-text-input [label]="'Username'" [formControl]="registerForm.controls.userName"></app-text-input>
+        <div class="mt-2">
+            <app-text-input [label]="'Password'" 
+            [formControl]="registerForm.controls.password"
+            [type]="'password'"></app-text-input>
+        </div>
+        <div class="mt-2">
+            <app-text-input [label]="'Confirm password'" 
+            [formControl]="registerForm.controls.confirmPassword"
+            [type]="'password'"></app-text-input>
+
+        </div>
+        <hr>
+        <button type="submit" 
+            class="btn btn-primary mx-auto d-block" 
+            [disabled]="!registerForm.valid">
+            Register</button>
+    </form>
+</div>
