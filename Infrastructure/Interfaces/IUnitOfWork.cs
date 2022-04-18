@@ -8,6 +8,7 @@ namespace Infrastructure.Interfaces
     public interface IUnitOfWork
     {
         IUserRepository UserRepository { get; }
+        ICollectionRepository CollectionRepository { get; }
         Task<bool> Complete();
         bool HasChanges();
     }

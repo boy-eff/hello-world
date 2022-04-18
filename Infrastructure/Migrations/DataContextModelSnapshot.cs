@@ -167,6 +167,9 @@ namespace Infrastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
                     b.Property<int>("OwnerId")
                         .HasColumnType("integer");
 
