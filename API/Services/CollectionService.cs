@@ -30,8 +30,17 @@ namespace API.Services
         public void AddCollection(CreateCollectionDto collectionDto, int userId)
         {
             var collection = _mapper.Map<WordCollection>(collectionDto);
-            collection.OwnerId = userId;
+            collection.OwnerId = userId;    
             _unitOfWork.CollectionRepository.AddCollection(collection);
         }
+
+        public async Task<IEnumerable<CollectionDto>> GetCollectionsAsync()
+        {
+            var collections = await _unitOfWork.CollectionRepository.GetCollectionsAsync();
+            var collectionsDto = _mapper.Map<IEnumerable<WordCollection>, IEnumerable<CollectionDto>>(collections);
+            return collectionsDto;
+        }
+
+        
     }
 }

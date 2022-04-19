@@ -15,6 +15,8 @@ namespace API.Helpers
             CreateMap<RegisterDto, AppUser>()
                 .ForMember(u => u.UserName, u => u.MapFrom(r => r.UserName.ToLower()));
             CreateMap<CreateCollectionDto, WordCollection>();
+            CreateMap<Word, WordDto>();
+            CreateMap<WordCollection, CollectionDto>();
         }
     }
 }

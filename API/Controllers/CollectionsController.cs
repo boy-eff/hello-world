@@ -29,7 +29,7 @@ namespace API.Controllers
         public async Task<ActionResult<IEnumerable<WordCollection>>> GetCollections()
         {
             
-            var collections = await _unitOfWork.CollectionRepository.GetCollectionsAsync();
+            var collections = await _collectionService.GetCollectionsAsync();
             return Ok(collections);
         }
 

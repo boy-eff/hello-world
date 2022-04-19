@@ -9,5 +9,6 @@ namespace API.Interfaces
     public interface ICollectionService
     {
         void AddCollection(CreateCollectionDto collectionDto, int userId);
+        Task<IEnumerable<CollectionDto>> GetCollectionsAsync();
     }
 }

@@ -20,7 +20,10 @@ import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 import {MatButton, MatButtonModule} from '@angular/material/button';
 import {MatIcon, MatIconModule} from '@angular/material/icon';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatTabsModule} from '@angular/material/tabs';
 import { EditWordComponent } from './_dialogs/edit-word/edit-word.component';
+import { CollectionsComponent } from './collections/collections.component';
+import { CollectionListComponent } from './collections/collection-list/collection-list.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,9 @@ import { EditWordComponent } from './_dialogs/edit-word/edit-word.component';
     TextInputComponent,
     LoginComponent,
     CollectionCreateComponent,
-    EditWordComponent
+    EditWordComponent,
+    CollectionsComponent,
+    CollectionListComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +52,8 @@ import { EditWordComponent } from './_dialogs/edit-word/edit-word.component';
     MatListModule,
     MatButtonModule,
     MatIconModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTabsModule
   ],
   providers: [
     {

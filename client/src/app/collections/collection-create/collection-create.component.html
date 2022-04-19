@@ -1,4 +1,3 @@
-
 <h1>Create your own collection!</h1>
 <hr>
 <p>
@@ -26,14 +25,18 @@
     <mat-divider></mat-divider>
     <mat-list-item>
         Word: {{word.value}} Translation: {{word.translation}}
-        <button mat-icon-button style="border-radius: 0.4em;" class="bg-danger ms-4"
-        (click)="removeWord(word)">
+
+        <div>
+          <button mat-icon-button style="border-radius: 0.4em;" class="bg-danger ms-4"
+          (click)="removeWord(word)">
           <mat-icon>delete</mat-icon>
-        </button>
-        <button mat-icon-button style="border-radius: 0.4em;" class="bg-primary ms-2"
-        (click)="editWord(word)">
+          </button>
+          <button mat-icon-button style="border-radius: 0.4em;" class="bg-primary ms-2"
+          (click)="editWord(word)">
           <mat-icon>edit</mat-icon>
         </button>
+        </div>
+        
     
       
     </mat-list-item>
