@@ -167,14 +167,44 @@ namespace Infrastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
                     b.Property<int>("OwnerId")
                         .HasColumnType("integer");
+
+                    b.Property<string>("ReviewStatus")
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
                     b.HasIndex("OwnerId");
 
                     b.ToTable("WordCollections");
+                });
+
+            modelBuilder.Entity("Domain.Entities.WordCollectionReview", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Content")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("ReviewTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("WordCollectionId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("WordCollectionId");
+
+                    b.ToTable("WordCollectionReview");
                 });
 
             modelBuilder.Entity("Domain.Entities.WordDictionary", b =>
@@ -340,6 +370,17 @@ namespace Infrastructure.Migrations
                     b.Navigation("Owner");
                 });
 
+            modelBuilder.Entity("Domain.Entities.WordCollectionReview", b =>
+                {
+                    b.HasOne("Domain.Entities.WordCollection", "Collection")
+                        .WithMany("Reviews")
+                        .HasForeignKey("WordCollectionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Collection");
+                });
+
             modelBuilder.Entity("Domain.Entities.WordDictionary", b =>
                 {
                     b.HasOne("Domain.Entities.AppUser", "Owner")
@@ -427,6 +468,8 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.WordCollection", b =>
                 {
+                    b.Navigation("Reviews");
+
                     b.Navigation("Words");
                 });
 

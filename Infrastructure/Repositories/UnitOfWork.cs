@@ -17,6 +17,8 @@ namespace Infrastructure.Repositories
         }
         public IUserRepository UserRepository => new UserRepository(_context);
 
+        public ICollectionRepository CollectionRepository => new CollectionRepository(_context);
+
         public async Task<bool> Complete()
         {
             return await _context.SaveChangesAsync() > 0;
