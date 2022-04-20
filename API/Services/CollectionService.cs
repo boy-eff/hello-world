@@ -24,6 +24,7 @@ namespace API.Services
             _userManager = userManager;
             _mapper = mapper;
             _unitOfWork = unitOfWork;
+            
         }
 
         public void AddCollection(CreateCollectionDto collectionDto, int userId)
