@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using API.DTO;
 using API.Interfaces;
 using AutoMapper;
-using Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

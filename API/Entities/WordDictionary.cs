@@ -1,4 +1,4 @@
-namespace Domain.Entities
+namespace API.Entities
 {
     public class WordDictionary
     {

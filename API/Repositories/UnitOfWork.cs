@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Infrastructure.Data;
-using Infrastructure.Interfaces;
+using API.Data;
+using API.Interfaces;
 
-namespace Infrastructure.Repositories
+namespace API.Repositories
 {
     public class UnitOfWork : IUnitOfWork
     {

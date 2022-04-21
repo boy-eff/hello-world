@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Domain.Entities
+namespace API.Entities
 {
     public class Word
     {

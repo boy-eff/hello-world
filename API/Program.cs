@@ -1,12 +1,10 @@
+using API.Data;
 using API.Extensions;
 using API.Helpers;
 using API.Interfaces;
 using API.Middleware;
+using API.Repositories;
 using API.Services;
-using Domain.Entities;
-using Infrastructure.Data;
-using Infrastructure.Interfaces;
-using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

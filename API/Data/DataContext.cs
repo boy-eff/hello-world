@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Domain.Entities;
+using API.Entities;
 using Microsoft.Extensions.Configuration;
 using System.Reflection;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 
-namespace Infrastructure.Data
+namespace API.Data
 {
     public class DataContext : IdentityDbContext<AppUser, AppRole, int, IdentityUserClaim<int>, 
                     AppUserToRole, IdentityUserLogin<int>, IdentityRoleClaim<int>, IdentityUserToken<int>>

@@ -2,13 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Domain.Entities;
-using Infrastructure.Data;
-using Infrastructure.Interfaces;
+using API.Data;
+using API.Entities;
+using API.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Repositories
+namespace API.Repositories
 {
     public class UserRepository : IUserRepository
     {

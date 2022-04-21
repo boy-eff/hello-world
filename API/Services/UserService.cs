@@ -4,11 +4,10 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using API.DTO;
+using API.Entities;
 using API.Exceptions;
 using API.Interfaces;
 using AutoMapper;
-using Domain.Entities;
-using Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
