@@ -101,7 +101,6 @@ StyleCopReport.xml
 *.svclog
 *.scc
 
-
 # Chutzpah Test files
 _Chutzpah*
 
@@ -456,4 +455,3 @@ $RECYCLE.BIN/
 !.vscode/extensions.json
 
 ssl
-*Migrations/
