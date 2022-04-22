@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Domain.Entities;
-using Infrastructure.Data;
+using API.Data;
+using API.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
@@ -17,6 +17,11 @@ namespace API.Extensions
         {
             services.AddIdentityCore<AppUser>(opt => {
                 opt.Password.RequireNonAlphanumeric = false;
+                opt.Password.RequireDigit = false;
+                opt.Password.RequiredLength = 4;
+                opt.Password.RequiredUniqueChars = 0;
+                opt.Password.RequireLowercase = false;
+                opt.Password.RequireUppercase = false;
             })
                 .AddRoles<AppRole>()
                 .AddRoleManager<RoleManager<AppRole>>()

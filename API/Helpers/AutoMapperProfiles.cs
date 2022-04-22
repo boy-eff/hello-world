@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using API.DTO;
+using API.Entities;
 using AutoMapper;
-using Domain.Entities;
 
 namespace API.Helpers
 {
@@ -14,6 +14,9 @@ namespace API.Helpers
         {
             CreateMap<RegisterDto, AppUser>()
                 .ForMember(u => u.UserName, u => u.MapFrom(r => r.UserName.ToLower()));
+            CreateMap<CreateCollectionDto, WordCollection>();
+            CreateMap<Word, WordDto>();
+            CreateMap<WordCollection, CollectionDto>();
         }
     }
 }

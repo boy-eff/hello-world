@@ -5,8 +5,8 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using API.Entities;
 using API.Interfaces;
-using Domain.Entities;
 using Microsoft.IdentityModel.Tokens;
 
 namespace API.Services

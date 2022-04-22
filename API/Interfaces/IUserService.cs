@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using API.DTO;
-using Domain.Entities;
+using API.Entities;
 using Microsoft.AspNetCore.Identity;
 
 namespace API.Interfaces

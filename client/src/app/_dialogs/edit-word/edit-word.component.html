@@ -1,0 +1,26 @@
+<div class="text-center">
+    <h1 mat-dialog-title>Enter new word</h1>
+<div mat-dialog-content>
+    <form (ngSubmit)="editWord()" [formGroup]="editForm">
+        <p>
+            <mat-form-field appearance="legacy" class="me-3">
+                <mat-label>Word</mat-label>
+                <input #value matInput placeholder="Sample word"
+                 formControlName="value">
+            </mat-form-field>
+        </p>
+        
+        <p>
+            <mat-form-field appearance="legacy" class="me-3"> 
+            <mat-label>Translation</mat-label>
+            <input matInput placeholder="Sample word"
+            formControlName="translation">
+            </mat-form-field>
+        </p>
+      </form>
+</div>
+<div mat-dialog-actions style="justify-content: center;">
+  <button mat-button (click)="onNoClick()" >Close</button>
+  <button mat-button [mat-dialog-close]="data" (click)="editWord()" cdkFocusInitial>Edit</button>
+</div>
+</div>
