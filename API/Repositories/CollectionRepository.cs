@@ -24,7 +24,9 @@ namespace API.Repositories
 
         public async Task<IEnumerable<WordCollection>> GetCollectionsAsync()
         {
-            return await _context.WordCollections.ToListAsync();
+            return await _context.WordCollections
+            .Include(wc => wc.Words)
+            .ToListAsync();
         }
     }
 }
