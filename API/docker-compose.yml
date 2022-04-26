@@ -1,0 +1,25 @@
+version: '3.4'
+
+networks:
+  privnet:
+    driver: bridge
+
+services:
+  helloworld-api:
+    container_name: helloworld_api
+    depends_on:
+      - "helloworld-postgres"
+    build: 
+      context: .
+      dockerfile: HelloWorld.API/Dockerfile
+    networks:
+      - privnet
+
+  helloworld-postgres:
+    container_name: helloworld-postgres
+    image: postgres:latest
+    restart: always
+    networks:
+      - privnet
+
+      
