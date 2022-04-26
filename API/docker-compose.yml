@@ -1,31 +1,25 @@
+version: '3.4'
 
 networks:
   privnet:
     driver: bridge
 
 services:
-  backend:
-    image: boyeff/helloworld
+  helloworld-api:
+    container_name: helloworld_api
     depends_on:
-      - "postgresdb"
+      - "helloworld-postgres"
     build: 
       context: .
-      dockerfile: Dockerfile
-    environment:
-      ASPNETCORE_ENVIRONMENT: "Docker"
-    ports:
-      - 8080:80
+      dockerfile: HelloWorld.API/Dockerfile
     networks:
       - privnet
 
-  postgresdb:
+  helloworld-postgres:
+    container_name: helloworld-postgres
     image: postgres:latest
-    ports:
-      - "5432"
     restart: always
-    environment:
-      POSTGRES_USER: "postgres"
-      POSTGRES_PASSWORD: "password"
-      POSTGRES_DB: "helloworld"
     networks:
       - privnet
+
+      
