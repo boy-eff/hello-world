@@ -24,6 +24,9 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { EditWordComponent } from './_dialogs/edit-word/edit-word.component';
 import { CollectionsComponent } from './collections/collections.component';
 import { CollectionListComponent } from './collections/collection-list/collection-list.component';
+import { ToastrModule } from 'ngx-toastr';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { AdminPanelReviewsComponent } from './admin-panel/admin-panel-reviews/admin-panel-reviews.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,9 @@ import { CollectionListComponent } from './collections/collection-list/collectio
     CollectionCreateComponent,
     EditWordComponent,
     CollectionsComponent,
-    CollectionListComponent
+    CollectionListComponent,
+    AdminPanelComponent,
+    AdminPanelReviewsComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +58,15 @@ import { CollectionListComponent } from './collections/collection-list/collectio
     MatButtonModule,
     MatIconModule,
     MatDialogModule,
-    MatTabsModule
+    MatTabsModule,
+    ToastrModule.forRoot({
+      timeOut: 10000,
+      positionClass: 'toast-bottom-right',
+      maxOpened: 5,
+      countDuplicates: true,
+      preventDuplicates: true,
+      resetTimeoutOnDuplicate: true,
+    }),
   ],
   providers: [
     {
