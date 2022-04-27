@@ -4,3 +4,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 span.mat-list-item-content {
     justify-content: space-between;
 }
+.btn-link {
+    text-decoration: none;
+}
