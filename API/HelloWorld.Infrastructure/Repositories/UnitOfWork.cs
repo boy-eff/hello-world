@@ -18,6 +18,7 @@ namespace HelloWorld.Infrastructure.Repositories
         public IUserRepository UserRepository => new UserRepository(_context);
 
         public ICollectionRepository CollectionRepository => new CollectionRepository(_context);
+        public IReviewRepository ReviewRepository => new ReviewRepository(_context);
 
         public async Task<bool> Complete()
         {

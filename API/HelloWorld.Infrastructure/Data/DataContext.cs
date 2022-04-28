@@ -20,6 +20,7 @@ namespace HelloWorld.Infrastructure.Data
             _configuration = configuration;
         }
         public DbSet<Word> Words => Set<Word>();
+        public DbSet<WordCollectionReview> WordCollectionReviews => Set<WordCollectionReview>();
         public DbSet<WordCollection> WordCollections => Set<WordCollection>();
         public DbSet<WordDictionary> WordDictionaries => Set<WordDictionary>();
 
