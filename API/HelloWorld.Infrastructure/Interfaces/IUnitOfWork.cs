@@ -9,6 +9,7 @@ namespace HelloWorld.Infrastructure.Interfaces
     {
         IUserRepository UserRepository { get; }
         ICollectionRepository CollectionRepository { get; }
+        ICollectionThemeRepository CollectionThemeRepository { get; }
         Task<bool> Complete();
         bool HasChanges();
     }
