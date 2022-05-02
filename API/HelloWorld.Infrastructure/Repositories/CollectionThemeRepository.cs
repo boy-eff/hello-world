@@ -17,7 +17,7 @@ namespace HelloWorld.Infrastructure.Repositories
             _context = context;
 
         }
-        public async Task<IEnumerable<WordCollectionTheme>> GetCollectionThemes()
+        public async Task<IEnumerable<WordCollectionTheme>> GetCollectionThemesAsync()
         {
             return await _context.WordCollectionThemes.ToListAsync();
         }

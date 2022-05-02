@@ -8,6 +8,6 @@ namespace HelloWorld.Infrastructure.Interfaces
 {
     public interface ICollectionThemeRepository
     {
-        Task<IEnumerable<WordCollectionTheme>> GetCollectionThemes();
+        Task<IEnumerable<WordCollectionTheme>> GetCollectionThemesAsync();
     }
 }
