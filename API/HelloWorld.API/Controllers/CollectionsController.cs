@@ -41,5 +41,11 @@ namespace HelloWorld.API.Controllers
             await _unitOfWork.Complete();
             return Ok();
         }
+        [HttpGet("themes")]
+        public async Task<ActionResult> GetCollectionThemes()
+        {
+            var themes = await _unitOfWork.CollectionThemeRepository.GetCollectionThemesAsync();
+            return Ok(themes);
+        }
     }
 }
