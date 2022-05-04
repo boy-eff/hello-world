@@ -5,17 +5,18 @@
       <form class="add-collection-form" [formGroup]="addForm" (ngSubmit)="addCollection()">
           <mat-form-field class="w-100" appearance="fill">
             <mat-label>Collection name</mat-label>
-            <input matInput formControlName="name">
+            <input matInput formControlName="name" autocomplete="off">
           </mat-form-field>
 
           <mat-form-field class="w-100" appearance="fill">
               <mat-label>Collection theme</mat-label>
-              <input matInput formControlName="theme">
+              <input matInput formControlName="theme" typeaheadOptionField="name" 
+                [typeahead]="themes" autocomplete="off">
             </mat-form-field>
         
           <mat-form-field class="w-100" appearance="fill">
             <mat-label>Description</mat-label>
-            <textarea matInput formControlName="description"></textarea>
+            <textarea matInput formControlName="description" autocomplete="off"></textarea>
           </mat-form-field>
 
           <div class="d-flex justify-content-center">

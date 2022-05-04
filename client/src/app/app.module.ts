@@ -27,6 +27,8 @@ import { CollectionListComponent } from './collections/collection-list/collectio
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { AddCollectionDialogComponent } from './_dialogs/add-collection-dialog/add-collection-dialog.component';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,7 +60,8 @@ import { AddCollectionDialogComponent } from './_dialogs/add-collection-dialog/a
     MatDialogModule,
     MatTabsModule,
     AccordionModule.forRoot(),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    TypeaheadModule.forRoot()
   ],
   providers: [
     {
