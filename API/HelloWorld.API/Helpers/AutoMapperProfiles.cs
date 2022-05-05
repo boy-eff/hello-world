@@ -18,6 +18,7 @@ namespace HelloWorld.API.Helpers
             CreateMap<Word, WordDto>();
             CreateMap<WordCollection, CollectionDto>()
                 .ForMember(cd => cd.Words, w => w.MapFrom(wc => wc.Words));
+            CreateMap<WordCollectionTheme, WordCollectionThemeDto>();
         }
     }
 }

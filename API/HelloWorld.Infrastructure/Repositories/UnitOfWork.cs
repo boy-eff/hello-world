@@ -19,6 +19,8 @@ namespace HelloWorld.Infrastructure.Repositories
 
         public ICollectionRepository CollectionRepository => new CollectionRepository(_context);
 
+        public ICollectionThemeRepository CollectionThemeRepository => new CollectionThemeRepository(_context);
+
         public async Task<bool> Complete()
         {
             return await _context.SaveChangesAsync() > 0;

@@ -3,6 +3,7 @@ using System;
 using HelloWorld.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HelloWorld.Infrastructure.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220428154339_EditCollectionEntity")]
+    partial class EditCollectionEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -179,14 +181,12 @@ namespace HelloWorld.Infrastructure.Migrations
                     b.Property<string>("ReviewStatus")
                         .HasColumnType("text");
 
-                    b.Property<int>("WordCollectionThemeId")
-                        .HasColumnType("integer");
+                    b.Property<string>("Theme")
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
                     b.HasIndex("OwnerId");
-
-                    b.HasIndex("WordCollectionThemeId");
 
                     b.ToTable("WordCollections");
                 });
@@ -213,22 +213,6 @@ namespace HelloWorld.Infrastructure.Migrations
                     b.HasIndex("WordCollectionId");
 
                     b.ToTable("WordCollectionReview");
-                });
-
-            modelBuilder.Entity("HelloWorld.Domain.Entities.WordCollectionTheme", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("WordCollectionThemes");
                 });
 
             modelBuilder.Entity("HelloWorld.Domain.Entities.WordDictionary", b =>
@@ -391,15 +375,7 @@ namespace HelloWorld.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("HelloWorld.Domain.Entities.WordCollectionTheme", "Theme")
-                        .WithMany("WordCollections")
-                        .HasForeignKey("WordCollectionThemeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Owner");
-
-                    b.Navigation("Theme");
                 });
 
             modelBuilder.Entity("HelloWorld.Domain.Entities.WordCollectionReview", b =>
@@ -503,11 +479,6 @@ namespace HelloWorld.Infrastructure.Migrations
                     b.Navigation("Reviews");
 
                     b.Navigation("Words");
-                });
-
-            modelBuilder.Entity("HelloWorld.Domain.Entities.WordCollectionTheme", b =>
-                {
-                    b.Navigation("WordCollections");
                 });
 
             modelBuilder.Entity("HelloWorld.Domain.Entities.WordDictionary", b =>

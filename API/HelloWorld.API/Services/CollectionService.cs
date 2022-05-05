@@ -40,7 +40,5 @@ namespace HelloWorld.API.Services
             var collectionsDto = _mapper.Map<IEnumerable<WordCollection>, IEnumerable<CollectionDto>>(collections);
             return collectionsDto;
         }
-
-        
     }
 }
