@@ -28,5 +28,10 @@ namespace HelloWorld.Infrastructure.Repositories
             .Include(wc => wc.Words)
             .ToListAsync();
         }
+
+        public async Task SaveChangesAsync()
+        {
+            await _context.SaveChangesAsync();
+        }
     }
 }

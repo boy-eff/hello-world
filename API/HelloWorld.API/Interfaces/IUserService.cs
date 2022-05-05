@@ -12,6 +12,7 @@ namespace HelloWorld.API.Interfaces
     public interface IUserService
     {
         Task<IdentityResult> CreateUserAsync(AppUser user, string password);
+        Task<IEnumerable<AppUser>> GetUsersAsync();
         Task<bool> UserExistsAsync(string username);
     }
 }

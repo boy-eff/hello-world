@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using HelloWorld.Infrastructure.Interfaces;
+using HelloWorld.API.Interfaces;
 
 namespace HelloWorld.API.Controllers
 {
@@ -15,19 +16,17 @@ namespace HelloWorld.API.Controllers
     public class UsersController : BaseApiController
     {
         private readonly DataContext _context;
-        private readonly UserManager<AppUser> _userManager;
-        private readonly IUnitOfWork _unitOfWork;
-        public UsersController(DataContext context, UserManager<AppUser> userManager, IUnitOfWork unitOfWork)
+        private readonly IUserService _userService;
+        public UsersController(DataContext context, IUserService userService)
         {
-            _unitOfWork = unitOfWork;
-            _userManager = userManager;
+            _userService = userService;
             _context = context;
         }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers()
         {
-            var users = await _unitOfWork.UserRepository.GetUsersAsync();
+            var users = await _userService.GetUsersAsync();
             return Ok(users);
         }
     }

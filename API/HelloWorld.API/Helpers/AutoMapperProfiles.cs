@@ -14,7 +14,8 @@ namespace HelloWorld.API.Helpers
         {
             CreateMap<RegisterDto, AppUser>()
                 .ForMember(u => u.UserName, u => u.MapFrom(r => r.UserName.ToLower()));
-            CreateMap<CreateCollectionDto, WordCollection>();
+            CreateMap<CreateCollectionDto, WordCollection>()
+                .ForMember(wc => wc.Theme, opt => opt.Ignore());
             CreateMap<Word, WordDto>();
             CreateMap<WordCollection, CollectionDto>()
                 .ForMember(cd => cd.Words, w => w.MapFrom(wc => wc.Words));

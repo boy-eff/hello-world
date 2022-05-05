@@ -15,14 +15,12 @@ namespace HelloWorld.API.Controllers
 {
     public class CollectionsController : BaseApiController
     {
-        private readonly IUnitOfWork _unitOfWork;
         private readonly ICollectionService _collectionService;
         private readonly UserManager<AppUser> _userManager;
-        public CollectionsController(IUnitOfWork unitOfWork, ICollectionService collectionService, UserManager<AppUser> userManager)
+        public CollectionsController(ICollectionService collectionService, UserManager<AppUser> userManager)
         {
             _userManager = userManager;
             _collectionService = collectionService;
-            _unitOfWork = unitOfWork;
         }
 
         [HttpGet]
@@ -37,14 +35,13 @@ namespace HelloWorld.API.Controllers
         public async Task<ActionResult> AddCollection(CreateCollectionDto collectionDto)
         {
             int ownerId = Int32.Parse(_userManager.GetUserId(User));
-            _collectionService.AddCollection(collectionDto, ownerId);
-            await _unitOfWork.Complete();
+            await _collectionService.AddCollection(collectionDto, ownerId);
             return Ok();
         }
         [HttpGet("themes")]
         public async Task<ActionResult> GetCollectionThemes()
         {
-            var themes = await _unitOfWork.CollectionThemeRepository.GetCollectionThemesAsync();
+            var themes = await _collectionService.GetCollectionsAsync();
             return Ok(themes);
         }
     }

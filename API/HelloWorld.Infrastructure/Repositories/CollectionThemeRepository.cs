@@ -17,9 +17,20 @@ namespace HelloWorld.Infrastructure.Repositories
             _context = context;
 
         }
+
         public async Task<IEnumerable<WordCollectionTheme>> GetCollectionThemesAsync()
         {
             return await _context.WordCollectionThemes.ToListAsync();
+        }
+
+        public async Task<WordCollectionTheme> GetThemeByNameAsync(string name)
+        {
+            return await _context.WordCollectionThemes.FirstOrDefaultAsync(wc => wc.Name == name);
+        }
+
+        public async Task SaveChangesAsync()
+        {
+            await _context.SaveChangesAsync();
         }
     }
 }

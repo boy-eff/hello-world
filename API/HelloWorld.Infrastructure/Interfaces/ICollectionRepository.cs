@@ -10,5 +10,6 @@ namespace HelloWorld.Infrastructure.Interfaces
     {
         Task<IEnumerable<WordCollection>> GetCollectionsAsync();
         void AddCollection(WordCollection collection);
+        Task SaveChangesAsync();
     }
 }

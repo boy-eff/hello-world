@@ -15,23 +15,23 @@ namespace HelloWorld.API.Services
     public class AccountService : IAccountService
     {
         private readonly SignInManager<AppUser> _signInManager;
-        private readonly IUnitOfWork _unitOfWork;
         private readonly ITokenService _tokenService;
         private readonly IMapper _mapper;
         private readonly IUserService _userService;
-        public AccountService(IUnitOfWork unitOfWork, SignInManager<AppUser> signInManager,
+        private readonly IUserRepository _userRepository;
+        public AccountService(IUserRepository userRepository, SignInManager<AppUser> signInManager,
          ITokenService tokenService, IMapper mapper, IUserService userService)
         {
+            _userRepository = userRepository;
             _signInManager = signInManager;
             _userService = userService;
             _mapper = mapper;
             _tokenService = tokenService;
-            _unitOfWork = unitOfWork;
         }
 
         public async Task<UserDto> Login(string username, string password)
         {
-            var user = await _unitOfWork.UserRepository.GetUserByUsername(username);
+            var user = await _userRepository.GetUserByUsername(username);
             if (user == null)
             {
                 throw new InvalidCredentialsException();
