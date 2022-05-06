@@ -10,6 +10,5 @@ namespace HelloWorld.Infrastructure.Interfaces
     {
         Task<IEnumerable<WordCollectionTheme>> GetCollectionThemesAsync();
         Task<WordCollectionTheme> GetThemeByIdAsync(int id);
-        Task SaveChangesAsync();
     }
 }

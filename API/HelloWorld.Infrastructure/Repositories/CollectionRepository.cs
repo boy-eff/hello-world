@@ -17,9 +17,10 @@ namespace HelloWorld.Infrastructure.Repositories
             _context = context;
         }
 
-        public void AddCollection(WordCollection collection)
+        public async Task AddCollection(WordCollection collection)
         {
             _context.WordCollections.Add(collection);
+            await _context.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<WordCollection>> GetCollectionsAsync()
@@ -27,11 +28,6 @@ namespace HelloWorld.Infrastructure.Repositories
             return await _context.WordCollections
             .Include(wc => wc.Words)
             .ToListAsync();
-        }
-
-        public async Task SaveChangesAsync()
-        {
-            await _context.SaveChangesAsync();
         }
     }
 }

@@ -27,10 +27,5 @@ namespace HelloWorld.Infrastructure.Repositories
         {
             return await _context.WordCollectionThemes.FindAsync(id);
         }
-
-        public async Task SaveChangesAsync()
-        {
-            await _context.SaveChangesAsync();
-        }
     }
 }

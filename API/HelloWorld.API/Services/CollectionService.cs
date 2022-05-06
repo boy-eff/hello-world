@@ -35,8 +35,7 @@ namespace HelloWorld.API.Services
             var collection = _mapper.Map<WordCollection>(collectionDto);
             collection.Theme = await _collectionThemeRepository.GetThemeByIdAsync(collectionDto.ThemeId);
             collection.OwnerId = userId;    
-            _collectionRepository.AddCollection(collection);
-            await _collectionRepository.SaveChangesAsync();
+            await _collectionRepository.AddCollection(collection);
         }
 
         public async Task<IEnumerable<CollectionDto>> GetCollectionsAsync()
