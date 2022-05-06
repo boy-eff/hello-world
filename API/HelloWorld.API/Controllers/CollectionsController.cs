@@ -17,8 +17,11 @@ namespace HelloWorld.API.Controllers
     {
         private readonly ICollectionService _collectionService;
         private readonly UserManager<AppUser> _userManager;
-        public CollectionsController(ICollectionService collectionService, UserManager<AppUser> userManager)
+        private readonly ICollectionThemeService _collectionThemeService;
+        public CollectionsController(ICollectionService collectionService,
+         UserManager<AppUser> userManager, ICollectionThemeService collectionThemeService)
         {
+            _collectionThemeService = collectionThemeService;
             _userManager = userManager;
             _collectionService = collectionService;
         }
@@ -41,7 +44,7 @@ namespace HelloWorld.API.Controllers
         [HttpGet("themes")]
         public async Task<ActionResult> GetCollectionThemes()
         {
-            var themes = await _collectionService.GetCollectionsAsync();
+            var themes = await _collectionThemeService.GetCollectionThemesAsync();
             return Ok(themes);
         }
     }
