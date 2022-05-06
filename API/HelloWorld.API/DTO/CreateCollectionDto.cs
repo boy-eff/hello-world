@@ -9,7 +9,7 @@ namespace HelloWorld.API.DTO
     public class CreateCollectionDto
     {
         public string Name { get; set; }
-        public string Theme { get; set; }
+        public int ThemeId { get; set; }
         public string Description { get; set; }
     }
 }

@@ -23,9 +23,9 @@ namespace HelloWorld.Infrastructure.Repositories
             return await _context.WordCollectionThemes.ToListAsync();
         }
 
-        public async Task<WordCollectionTheme> GetThemeByNameAsync(string name)
+        public async Task<WordCollectionTheme> GetThemeByIdAsync(int id)
         {
-            return await _context.WordCollectionThemes.FirstOrDefaultAsync(wc => wc.Name == name);
+            return await _context.WordCollectionThemes.FindAsync(id);
         }
 
         public async Task SaveChangesAsync()

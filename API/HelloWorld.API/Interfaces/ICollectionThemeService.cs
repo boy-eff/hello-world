@@ -10,6 +10,6 @@ namespace HelloWorld.API.Interfaces
     public interface ICollectionThemeService
     {
         Task<IEnumerable<WordCollectionThemeDto>> GetCollectionThemesAsync();
-        Task<WordCollectionTheme> GetCollectionThemeByName(string name);
+        Task<WordCollectionTheme> GetCollectionThemeById(int id);
     }
 }

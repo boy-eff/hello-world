@@ -33,7 +33,7 @@ namespace HelloWorld.API.Services
         public async Task AddCollection(CreateCollectionDto collectionDto, int userId)
         {
             var collection = _mapper.Map<WordCollection>(collectionDto);
-            collection.Theme = await _collectionThemeRepository.GetThemeByNameAsync(collectionDto.Theme);
+            collection.Theme = await _collectionThemeRepository.GetThemeByIdAsync(collectionDto.ThemeId);
             collection.OwnerId = userId;    
             _collectionRepository.AddCollection(collection);
             await _collectionRepository.SaveChangesAsync();

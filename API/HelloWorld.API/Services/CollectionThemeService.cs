@@ -21,9 +21,9 @@ namespace HelloWorld.API.Services
             _mapper = mapper;
         }
 
-        public async Task<WordCollectionTheme> GetCollectionThemeByName(string name)
+        public async Task<WordCollectionTheme> GetCollectionThemeById(int id)
         {
-            return await _collectionThemeRepository.GetThemeByNameAsync(name);
+            return await _collectionThemeRepository.GetThemeByIdAsync(id);
         }
 
         public async Task<IEnumerable<WordCollectionThemeDto>> GetCollectionThemesAsync()

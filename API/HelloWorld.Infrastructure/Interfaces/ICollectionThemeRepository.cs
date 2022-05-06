@@ -9,7 +9,7 @@ namespace HelloWorld.Infrastructure.Interfaces
     public interface ICollectionThemeRepository
     {
         Task<IEnumerable<WordCollectionTheme>> GetCollectionThemesAsync();
-        Task<WordCollectionTheme> GetThemeByNameAsync(string name);
+        Task<WordCollectionTheme> GetThemeByIdAsync(int id);
         Task SaveChangesAsync();
     }
 }
