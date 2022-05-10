@@ -16,6 +16,7 @@ builder.Services.AddControllers().AddNewtonsoftJson();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<DataContext>();
+
 builder.Services.AddRepositories();
 builder.Services.AddServices();
 
@@ -37,7 +38,7 @@ app.UseHttpsRedirection();
 app.UseCors(x => x.AllowAnyHeader()
                 .AllowAnyMethod()
                 .AllowCredentials()
-                .WithOrigins("http://localhost:4200"));
+                .WithOrigins(builder.Configuration["ClientURL"]));
 
 app.UseAuthentication();
 app.UseAuthorization();
