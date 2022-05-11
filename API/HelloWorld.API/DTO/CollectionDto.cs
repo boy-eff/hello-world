@@ -10,7 +10,7 @@ namespace HelloWorld.API.DTO
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Theme { get; set; }
+        public int ThemeId { get; set; }
         public string Description { get; set; }
         public string OwnerId { get; set; }
         public ICollection<WordDto> Words { get; set; }

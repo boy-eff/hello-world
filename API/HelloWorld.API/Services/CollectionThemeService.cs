@@ -12,18 +12,23 @@ namespace HelloWorld.API.Services
 {
     public class CollectionThemeService : ICollectionThemeService
     {
-        private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+        private readonly ICollectionThemeRepository _collectionThemeRepository;
 
-        public CollectionThemeService(IUnitOfWork unitOfWork, IMapper mapper)
+        public CollectionThemeService(ICollectionThemeRepository collectionThemeRepository, IMapper mapper)
         {
-            _unitOfWork = unitOfWork;
+            _collectionThemeRepository = collectionThemeRepository;
             _mapper = mapper;
+        }
+
+        public async Task<WordCollectionTheme> GetCollectionThemeById(int id)
+        {
+            return await _collectionThemeRepository.GetThemeByIdAsync(id);
         }
 
         public async Task<IEnumerable<WordCollectionThemeDto>> GetCollectionThemesAsync()
         {
-            var themes =  await _unitOfWork.CollectionThemeRepository.GetCollectionThemesAsync();
+            var themes =  await _collectionThemeRepository.GetCollectionThemesAsync();
             return _mapper.Map<IEnumerable<WordCollectionTheme>, IEnumerable<WordCollectionThemeDto>>(themes);
         }
     }
