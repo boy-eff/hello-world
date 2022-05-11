@@ -17,6 +17,9 @@ namespace HelloWorld.API.Extensions
             var dbContext = services.ServiceProvider.GetService<DataContext>();
 
             dbContext.Database.Migrate();
+
+            dbContext.WordCollectionThemes.Add(new Domain.Entities.WordCollectionTheme{Id = 0, Name = "Animals"});
+            dbContext.SaveChanges();
         }
     }
 }

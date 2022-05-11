@@ -9,6 +9,6 @@ namespace HelloWorld.Infrastructure.Interfaces
     public interface ICollectionRepository
     {
         Task<IEnumerable<WordCollection>> GetCollectionsAsync();
-        void AddCollection(WordCollection collection);
+        Task AddCollection(WordCollection collection);
     }
 }

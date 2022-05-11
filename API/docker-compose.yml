@@ -18,6 +18,7 @@ services:
   helloworld-postgres:
     container_name: helloworld-postgres
     image: postgres:latest
+    command: postgres -c log_statement=all
     restart: always
     networks:
       - privnet

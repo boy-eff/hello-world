@@ -16,12 +16,9 @@ builder.Services.AddControllers().AddNewtonsoftJson();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<DataContext>();
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddScoped<ITokenService, TokenService>();
-builder.Services.AddScoped<IUserService, UserService>();
-builder.Services.AddScoped<IAccountService, AccountService>();
-builder.Services.AddScoped<ICollectionService, CollectionService>();
-builder.Services.AddScoped<ICollectionThemeService, CollectionThemeService>();
+
+builder.Services.AddRepositories();
+builder.Services.AddServices();
 
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
 
@@ -41,7 +38,7 @@ app.UseHttpsRedirection();
 app.UseCors(x => x.AllowAnyHeader()
                 .AllowAnyMethod()
                 .AllowCredentials()
-                .WithOrigins("https://localhost:4200"));
+                .WithOrigins(builder.Configuration["ClientURL"]));
 
 app.UseAuthentication();
 app.UseAuthorization();
