@@ -16,7 +16,9 @@ import { WordCollectionsService } from 'src/app/_services/word-collections.servi
 })
 export class AddCollectionDialogComponent implements OnInit {
   addForm: FormGroup;
+  isDataAvailable: boolean = false;
   onClose: BehaviorSubject<WordCollection>;
+  result: WordCollection;
   themes: WordCollectionTheme[] = [];
   constructor(private fb: FormBuilder, private collectionsService: WordCollectionsService,
      public modalRef: BsModalRef, private validatorsService: ValidatorsService) { }
@@ -25,11 +27,12 @@ export class AddCollectionDialogComponent implements OnInit {
       this.collectionsService.getWordCollectionThemes().subscribe(
         result => {
           this.themes = result;
+          console.log(this.themes);
+          this.initializeForm();
           this.addThemeValidatorToForm();
+          this.isDataAvailable = true;
       }
       );
-      this.initializeForm();
-      
       this.onClose = new BehaviorSubject(null);
   }
 
@@ -50,7 +53,9 @@ export class AddCollectionDialogComponent implements OnInit {
   }
 
   addCollection(): void {
-    this.onClose.next(this.addForm.value);
+    this.result = this.addForm.value;
+    this.result.themeId = this.themes.find(obj => obj.name === this.result.theme).id;
+    this.onClose.next(this.result);
     this.modalRef.hide(); 
   }
 

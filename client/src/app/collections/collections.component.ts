@@ -25,7 +25,7 @@ export class CollectionsComponent implements OnInit {
       if (result !== null)
       {
         this.wordCollections.push(result);
-        this.wordCollectionsService.addWordCollection(result);
+        this.wordCollectionsService.addWordCollection(result).subscribe();
       }
     });
   }
