@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AbstractControl, ValidatorFn } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
+import { WordCollectionTheme } from '../_models/word-collection-theme';
 
 @Injectable({
   providedIn: 'root'
@@ -16,13 +17,9 @@ export class ValidatorsService {
     }
   }
 
-  included(arr: BehaviorSubject<string[]>): ValidatorFn {
+  included(arr: string[]): ValidatorFn {
     return (control: AbstractControl) => {
-      let themes: string[];
-      arr.subscribe(value => {
-        themes = value
-      })
-      return themes.includes(control?.value) ? null : {value: control.value};
+      return arr.includes(control?.value) ? null : {value: control.value};
     }
   }
 }

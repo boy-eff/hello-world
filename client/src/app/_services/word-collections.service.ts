@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable, ReplaySubject, shareReplay } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { WordCollection } from '../_models/word-collection';
 import { WordCollectionTheme } from '../_models/word-collection-theme';
@@ -9,6 +10,7 @@ import { WordCollectionTheme } from '../_models/word-collection-theme';
 })
 export class WordCollectionsService {
   baseUrl = environment.apiUrl;
+  cachedThemes: Observable<WordCollectionTheme[]> = null;
   constructor(private http: HttpClient) { }
 
   addWordCollection(wordCollection: WordCollection)
@@ -23,6 +25,13 @@ export class WordCollectionsService {
 
   getWordCollectionThemes()
   {
-    return this.http.get<WordCollectionTheme[]>(this.baseUrl + "collections/themes");
+    if (!this.cachedThemes)
+    {
+      this.cachedThemes = this.http.get<WordCollectionTheme[]>(this.baseUrl + "collections/themes").pipe(
+        shareReplay(1)
+      );
+      console.log("from API");
+    }
+    return this.cachedThemes;
   }
 }

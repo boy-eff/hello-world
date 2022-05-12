@@ -17,19 +17,20 @@ import { WordCollectionsService } from 'src/app/_services/word-collections.servi
 export class AddCollectionDialogComponent implements OnInit {
   addForm: FormGroup;
   onClose: BehaviorSubject<WordCollection>;
-  themes: BehaviorSubject<string[]>;
+  themes: WordCollectionTheme[] = [];
   constructor(private fb: FormBuilder, private collectionsService: WordCollectionsService,
      public modalRef: BsModalRef, private validatorsService: ValidatorsService) { }
 
-    ngOnInit(): void {
-    this.themes = new BehaviorSubject([]);
+    ngOnInit() {
       this.collectionsService.getWordCollectionThemes().subscribe(
         result => {
-          this.themes.next(result.map(r => r.name))
-        }
-      )
-    this.initializeForm();
-    this.onClose = new BehaviorSubject(null);
+          this.themes = result;
+          this.addThemeValidatorToForm();
+      }
+      );
+      this.initializeForm();
+      
+      this.onClose = new BehaviorSubject(null);
   }
 
   initializeForm()
@@ -37,16 +38,20 @@ export class AddCollectionDialogComponent implements OnInit {
     this.addForm = this.fb.group(
       {
         "name": ["", Validators.required],
-        "theme": ["", [Validators.required, this.validatorsService.included(this.themes)]],
+        "theme": ["", [Validators.required]],
         "description": [""]
       });
   }
 
-  addCollection(): void {
+  addThemeValidatorToForm()
+  {
+    this.addForm.controls["theme"].addValidators(this.validatorsService
+      .included(this.themes.map(r => r.name)))
+  }
 
+  addCollection(): void {
     this.onClose.next(this.addForm.value);
-    this.modalRef.hide();
-    
+    this.modalRef.hide(); 
   }
 
 }
