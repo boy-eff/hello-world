@@ -27,6 +27,11 @@ namespace HelloWorld.API.Services
             return await _userManager.CreateAsync(user, password);
         }
 
+        public async Task<AppUser> GetUserByUsernameAsync(string username)
+        {
+            return await _userRepository.GetUserByUsername(username);
+        }
+
         public async Task<IEnumerable<AppUser>> GetUsersAsync()
         {
             return await _userRepository.GetUsersAsync();
