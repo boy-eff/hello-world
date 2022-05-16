@@ -20,7 +20,7 @@ namespace HelloWorld.API.Services
                 config.Value.ApiKey,
                 config.Value.ApiSecret
             );
-
+            System.Console.WriteLine(config.Value.CloudName);
             _cloudinary = new Cloudinary(acc);
         }
 

@@ -10,5 +10,6 @@ namespace HelloWorld.Infrastructure.Interfaces
     {
         Task<IEnumerable<AppUser>> GetUsersAsync();
         Task<AppUser> GetUserByUsername(string username);
+        Task AddPhoto(AppUser user, Photo photo);
     }
 }

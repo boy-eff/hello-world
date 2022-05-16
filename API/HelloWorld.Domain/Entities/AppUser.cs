@@ -8,5 +8,6 @@ namespace HelloWorld.Domain.Entities
         public WordDictionary WordDictionary { get; set; }
         public ICollection<WordCollection> WordCollections { get; set; }
         public ICollection<AppUserToRole> UserRoles { get; set; }
+        public Photo Photo { get; set; }
     }
 }

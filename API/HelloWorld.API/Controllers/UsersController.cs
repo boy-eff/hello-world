@@ -17,8 +17,10 @@ namespace HelloWorld.API.Controllers
     {
         private readonly DataContext _context;
         private readonly IUserService _userService;
-        public UsersController(DataContext context, IUserService userService)
+        private readonly IPhotoService _photoService;
+        public UsersController(DataContext context, IUserService userService, IPhotoService photoService)
         {
+            _photoService = photoService;
             _userService = userService;
             _context = context;
         }
@@ -28,6 +30,13 @@ namespace HelloWorld.API.Controllers
         {
             var users = await _userService.GetUsersAsync();
             return Ok(users);
+        }
+
+        [HttpPost("photo")]
+        public async Task<ActionResult> AddPhoto(IFormFile file)
+        {
+            await _userService.AddPhoto(file);
+            return Ok();
         }
     }
 }

@@ -16,12 +16,32 @@ namespace HelloWorld.API.Services
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly IUserRepository _userRepository;
+        private readonly IHttpContextAccessor _accessor;
+        private readonly IPhotoService _photoService;
 
-        public UserService(UserManager<AppUser> userManager, IUserRepository userRepository)
+        public UserService(UserManager<AppUser> userManager, IUserRepository userRepository,
+            IHttpContextAccessor accessor, IPhotoService photoService)
         {
+            _photoService = photoService;
+            _accessor = accessor;
             _userManager = userManager;
             _userRepository = userRepository;
         }
+
+        public async Task AddPhoto(IFormFile file)
+        {
+            var user = await _userRepository.GetUserByUsername(_accessor.HttpContext.User.Identity.Name);
+            var result = await _photoService.AddPhotoAsync(file);
+            if (result.Error != null) return;
+            var photo = new Photo()
+            {
+                Url = result.SecureUrl.AbsoluteUri,
+                PublicId = result.PublicId
+            };
+
+            await _userRepository.AddPhoto(user, photo);
+        }
+
         public async Task<IdentityResult> CreateUserAsync(AppUser user, string password)
         {
             return await _userManager.CreateAsync(user, password);

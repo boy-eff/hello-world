@@ -23,6 +23,7 @@ namespace HelloWorld.Infrastructure.Data
         public DbSet<WordCollection> WordCollections => Set<WordCollection>();
         public DbSet<WordDictionary> WordDictionaries => Set<WordDictionary>();
         public DbSet<WordCollectionTheme> WordCollectionThemes => Set<WordCollectionTheme>();
+        public DbSet<Photo> Photos => Set<Photo>();
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
