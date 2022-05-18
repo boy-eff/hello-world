@@ -14,5 +14,7 @@ namespace HelloWorld.API.Interfaces
         Task<IdentityResult> CreateUserAsync(AppUser user, string password);
         Task<IEnumerable<AppUser>> GetUsersAsync();
         Task<bool> UserExistsAsync(string username);
+        Task<AppUser> GetUserByUsernameAsync(string username);
+        Task AddPhoto(IFormFile file);
     }
 }

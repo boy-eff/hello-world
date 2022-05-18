@@ -27,5 +27,11 @@ namespace HelloWorld.Infrastructure.Repositories
         {
             return await _context.Users.ToListAsync();
         }
+
+        public async Task AddPhoto(AppUser user, Photo photo)
+        {
+            user.Photo = photo;
+            await _context.SaveChangesAsync();
+        }
     }
 }

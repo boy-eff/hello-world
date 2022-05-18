@@ -18,6 +18,7 @@ namespace HelloWorld.API.Extensions
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<ICollectionService, CollectionService>();
             services.AddScoped<ICollectionThemeService, CollectionThemeService>();
+            services.AddScoped<IPhotoService, PhotoService>();
             return services;
         }
 
