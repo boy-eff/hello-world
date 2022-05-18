@@ -41,7 +41,7 @@ export class CollectionCreateComponent implements OnInit {
   addCollection()
   {
     let collection = {name: this.collectionName, words: this.words};
-    this.collectionsService.addWordCollection(collection);
+    //this.collectionsService.addWordCollection(collection);
   }
 
   removeWord(word: Word)

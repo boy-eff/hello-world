@@ -24,6 +24,10 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { EditWordComponent } from './_dialogs/edit-word/edit-word.component';
 import { CollectionsComponent } from './collections/collections.component';
 import { CollectionListComponent } from './collections/collection-list/collection-list.component';
+import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { AddCollectionDialogComponent } from './_dialogs/add-collection-dialog/add-collection-dialog.component';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 
 @NgModule({
   declarations: [
@@ -36,7 +40,8 @@ import { CollectionListComponent } from './collections/collection-list/collectio
     CollectionCreateComponent,
     EditWordComponent,
     CollectionsComponent,
-    CollectionListComponent
+    CollectionListComponent,
+    AddCollectionDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,7 +58,10 @@ import { CollectionListComponent } from './collections/collection-list/collectio
     MatButtonModule,
     MatIconModule,
     MatDialogModule,
-    MatTabsModule
+    MatTabsModule,
+    AccordionModule.forRoot(),
+    ModalModule.forRoot(),
+    TypeaheadModule.forRoot()
   ],
   providers: [
     {
