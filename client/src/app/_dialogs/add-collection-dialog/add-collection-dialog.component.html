@@ -1,0 +1,29 @@
+<ng-container *ngIf="isDataAvailable">
+  <div class="modal-header text-center">
+    <h2 class="w-100 mb-0">Add new collection</h2>
+  </div>
+  <div class="modal-body">
+      <form class="add-collection-form" [formGroup]="addForm" (ngSubmit)="addCollection()">
+          <mat-form-field class="w-100" appearance="fill">
+            <mat-label>Collection name</mat-label>
+            <input matInput formControlName="name" autocomplete="off">
+          </mat-form-field>
+
+          <mat-form-field class="w-100" appearance="fill">
+              <mat-label>Collection theme</mat-label>
+              <input matInput formControlName="theme" typeaheadOptionField="name" 
+                [typeahead]="themes" autocomplete="off">
+            </mat-form-field>
+        
+          <mat-form-field class="w-100" appearance="fill">
+            <mat-label>Description</mat-label>
+            <textarea matInput formControlName="description" autocomplete="off"></textarea>
+          </mat-form-field>
+
+          <div class="d-flex justify-content-center">
+            <button type="button" (click)="modalRef?.hide()" class="btn btn-danger w-25">Cancel</button>
+            <button type="submit" class="btn btn-primary ms-3 w-25" [disabled]="!addForm.valid">Add</button>
+          </div>
+        </form>
+  </div>
+</ng-container>

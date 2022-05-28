@@ -2,5 +2,7 @@ import { Word } from "./word";
 
 export interface WordCollection {
     name: string;
-    words: Word[];
+    themeId: number;
+    theme: string;
+    description: string;
 }

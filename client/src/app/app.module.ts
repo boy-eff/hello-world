@@ -25,6 +25,10 @@ import { EditWordComponent } from './_dialogs/edit-word/edit-word.component';
 import { CollectionsComponent } from './collections/collections.component';
 import { CollectionListComponent } from './collections/collection-list/collection-list.component';
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
+import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { AddCollectionDialogComponent } from './_dialogs/add-collection-dialog/add-collection-dialog.component';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 
 @NgModule({
   declarations: [
@@ -39,6 +43,7 @@ import { MemberEditComponent } from './members/member-edit/member-edit.component
     CollectionsComponent,
     CollectionListComponent,
     MemberEditComponent
+    AddCollectionDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,7 +60,10 @@ import { MemberEditComponent } from './members/member-edit/member-edit.component
     MatButtonModule,
     MatIconModule,
     MatDialogModule,
-    MatTabsModule
+    MatTabsModule,
+    AccordionModule.forRoot(),
+    ModalModule.forRoot(),
+    TypeaheadModule.forRoot()
   ],
   providers: [
     {
