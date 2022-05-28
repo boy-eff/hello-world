@@ -1,0 +1,21 @@
+<h1 class="text-center">Edit your profile</h1>
+<div class="d-flex flex-column text-center align-items-center border border-2 rounded w-50 mx-auto pt-4 pb-4">
+    <div class="d-flex flex-column">
+        <img
+        src="https://res.cloudinary.com/the-best-dating-app/image/upload/v1652780396/k0qz4sf3jmpj2wfbyrh5.png" 
+        alt=""
+        width="300"
+        height="300"
+        >
+        <input type="file" class="file-upload" #fileUpload
+            (change)="handleFileInput($event.target.files)" style="display: none;">
+        <button class="w-50 mx-auto mt-3 btn btn-primary" (click)="fileUpload.click()">Load photo</button>
+    </div>
+    
+    <div>
+        <h3 class="mb-0">Name</h3>
+        <input class="form-control">
+        <h3 class="mb-0">Description</h3>
+        <textarea class="form-control" aria-label="With textarea"></textarea>
+    </div>
+</div>

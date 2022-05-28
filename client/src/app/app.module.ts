@@ -24,6 +24,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { EditWordComponent } from './_dialogs/edit-word/edit-word.component';
 import { CollectionsComponent } from './collections/collections.component';
 import { CollectionListComponent } from './collections/collection-list/collection-list.component';
+import { MemberEditComponent } from './members/member-edit/member-edit.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { CollectionListComponent } from './collections/collection-list/collectio
     CollectionCreateComponent,
     EditWordComponent,
     CollectionsComponent,
-    CollectionListComponent
+    CollectionListComponent,
+    MemberEditComponent
   ],
   imports: [
     BrowserModule,
