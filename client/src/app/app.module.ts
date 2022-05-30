@@ -42,7 +42,7 @@ import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
     EditWordComponent,
     CollectionsComponent,
     CollectionListComponent,
-    MemberEditComponent
+    MemberEditComponent,
     AddCollectionDialogComponent,
   ],
   imports: [
