@@ -1,21 +1,25 @@
 <h1 class="text-center">Edit your profile</h1>
+<i class="fa-solid fa-plus"></i>
 <div class="d-flex flex-column text-center align-items-center
     border border-2 rounded w-50 mx-auto pt-4 pb-4" *ngIf="(member$ | async) as member">
-    <div class="d-flex flex-column">
+    <div class="d-flex flex-column img-container">
         <img
         [src] = "member.photoUrl !== null ? member.photoUrl : '/assets/default-picture.png'"
         alt=""
         width="300"
         height="300"
         style="border-radius: 50%;"
+        class="image"
+        (click)="fileUpload.click()"
         >
+        <fa-icon [icon]="faPlusSquare" class="fa-2xl plus-icon"></fa-icon>
         <input type="file" class="file-upload" #fileUpload name="photo"
             (change)="handleFileInput($event.target.files)" style="display: none;">
-        <button class="w-50 mx-auto mt-3 btn btn-primary" (click)="fileUpload.click()">Load photo</button>
     </div>
     
     <div>
         <h3 class="mb-0">Description</h3>
         <textarea class="form-control" aria-label="With textarea" value="{{member.description}}"></textarea>
     </div>
+    <button class="w-50 mx-auto mt-3 btn btn-primary">Save changes</button>
 </div>

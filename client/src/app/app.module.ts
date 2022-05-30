@@ -29,6 +29,7 @@ import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { AddCollectionDialogComponent } from './_dialogs/add-collection-dialog/add-collection-dialog.component';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
     MatTabsModule,
     AccordionModule.forRoot(),
     ModalModule.forRoot(),
-    TypeaheadModule.forRoot()
+    TypeaheadModule.forRoot(),
+    FontAwesomeModule
   ],
   providers: [
     {

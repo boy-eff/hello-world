@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 import { Observable } from 'rxjs';
 import { Member } from 'src/app/_models/member';
 import { User } from 'src/app/_models/user';
@@ -13,7 +14,7 @@ import { MemberService } from 'src/app/_services/member.service';
 export class MemberEditComponent implements OnInit {
   user: User;
   member$: Observable<Member>;
-
+  faPlusSquare = faPlusSquare;
   constructor(private accountService: AccountService, private memberService: MemberService) { 
     accountService.currentUser$.subscribe(user => this.user = user);
   }
