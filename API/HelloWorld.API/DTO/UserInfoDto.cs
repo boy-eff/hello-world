@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace HelloWorld.API.DTO
 {
-    public class MemberDto
+    public class UserInfoDto
     {
         public int Id { get; set; }
         public string Username { get; set; }

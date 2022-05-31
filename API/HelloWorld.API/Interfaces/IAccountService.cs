@@ -9,7 +9,7 @@ namespace HelloWorld.API.Interfaces
 {
     public interface IAccountService
     {
-        Task<UserDto> Login(string username, string password);
+        Task<UserAccessTokenDto> Login(string username, string password);
         Task<IdentityResult> Register(RegisterDto registerDto);
     }
 }

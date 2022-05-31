@@ -34,7 +34,7 @@ namespace HelloWorld.API.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
+        public async Task<ActionResult<UserAccessTokenDto>> Login(LoginDto loginDto)
         {
             var result = await _accountService.Login(loginDto.UserName, loginDto.Password);
             return Ok(result);

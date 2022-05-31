@@ -50,16 +50,16 @@ namespace HelloWorld.API.Services
             return await _userManager.CreateAsync(user, password);
         }
 
-        public async Task<MemberDto> GetUserByUsernameAsync(string username)
+        public async Task<UserInfoDto> GetUserByUsernameAsync(string username)
         {
             var user = await _userRepository.GetUserByUsername(username);
-            return _mapper.Map<MemberDto>(user);
+            return _mapper.Map<UserInfoDto>(user);
         }
 
-        public async Task<IEnumerable<MemberDto>> GetUsersAsync()
+        public async Task<IEnumerable<UserInfoDto>> GetUsersAsync()
         {
             var users = await _userRepository.GetUsersAsync();
-            return _mapper.Map<IEnumerable<AppUser>, IEnumerable<MemberDto>>(users);
+            return _mapper.Map<IEnumerable<AppUser>, IEnumerable<UserInfoDto>>(users);
         }
 
         public async Task<bool> UserExistsAsync(string username)

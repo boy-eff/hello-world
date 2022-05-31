@@ -20,7 +20,7 @@ namespace HelloWorld.API.Helpers
             CreateMap<WordCollection, CollectionDto>()
                 .ForMember(cd => cd.Words, w => w.MapFrom(wc => wc.Words));
             CreateMap<WordCollectionTheme, WordCollectionThemeDto>();
-            CreateMap<AppUser, MemberDto>()
+            CreateMap<AppUser, UserInfoDto>()
                 .ForMember(member => member.PhotoUrl, m => m.MapFrom(u => u.Photo.Url));
         }
     }

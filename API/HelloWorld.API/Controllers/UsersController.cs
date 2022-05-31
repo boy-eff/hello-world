@@ -27,14 +27,14 @@ namespace HelloWorld.API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<UserInfoDto>>> GetUsers()
         {
             var users = await _userService.GetUsersAsync();
             return Ok(users);
         }
 
         [HttpGet("{username}")]
-        public async Task<ActionResult<MemberDto>> GetUserByUsername(string username)
+        public async Task<ActionResult<UserInfoDto>> GetUserByUsername(string username)
         {
             var user = await _userService.GetUserByUsernameAsync(username);
             return Ok(user);
