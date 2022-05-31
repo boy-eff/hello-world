@@ -12,9 +12,9 @@ namespace HelloWorld.API.Interfaces
     public interface IUserService
     {
         Task<IdentityResult> CreateUserAsync(AppUser user, string password);
-        Task<IEnumerable<MemberDto>> GetUsersAsync();
+        Task<IEnumerable<UserInfoDto>> GetUsersAsync();
         Task<bool> UserExistsAsync(string username);
-        Task<MemberDto> GetUserByUsernameAsync(string username);
+        Task<UserInfoDto> GetUserByUsernameAsync(string username);
         Task AddPhoto(IFormFile file);
     }
 }
