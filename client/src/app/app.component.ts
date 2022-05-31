@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from './_models/user';
+import { UserAccessToken } from './_models/user-access-token';
 import { AccountService } from './_services/account.service';
 
 
@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
   }
   
   setCurrentUser() {
-    const user: User = JSON.parse(localStorage.getItem("user")!);
+    const user: UserAccessToken = JSON.parse(localStorage.getItem("user")!);
     if (user) {
       this.accountService.setCurrentUser(user);
     }

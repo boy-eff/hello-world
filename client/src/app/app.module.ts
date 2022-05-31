@@ -24,10 +24,12 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { EditWordComponent } from './_dialogs/edit-word/edit-word.component';
 import { CollectionsComponent } from './collections/collections.component';
 import { CollectionListComponent } from './collections/collection-list/collection-list.component';
+import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { AddCollectionDialogComponent } from './_dialogs/add-collection-dialog/add-collection-dialog.component';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,7 @@ import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
     EditWordComponent,
     CollectionsComponent,
     CollectionListComponent,
+    MemberEditComponent,
     AddCollectionDialogComponent,
   ],
   imports: [
@@ -61,7 +64,8 @@ import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
     MatTabsModule,
     AccordionModule.forRoot(),
     ModalModule.forRoot(),
-    TypeaheadModule.forRoot()
+    TypeaheadModule.forRoot(),
+    FontAwesomeModule
   ],
   providers: [
     {

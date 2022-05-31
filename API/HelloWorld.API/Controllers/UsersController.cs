@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using HelloWorld.Infrastructure.Interfaces;
 using HelloWorld.API.Interfaces;
+using HelloWorld.API.DTO;
 
 namespace HelloWorld.API.Controllers
 {
@@ -26,10 +27,17 @@ namespace HelloWorld.API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<UserInfoDto>>> GetUsers()
         {
             var users = await _userService.GetUsersAsync();
             return Ok(users);
+        }
+
+        [HttpGet("{username}")]
+        public async Task<ActionResult<UserInfoDto>> GetUserByUsername(string username)
+        {
+            var user = await _userService.GetUserByUsernameAsync(username);
+            return Ok(user);
         }
 
         [HttpPost("photo")]

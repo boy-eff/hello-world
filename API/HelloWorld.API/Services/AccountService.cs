@@ -29,7 +29,7 @@ namespace HelloWorld.API.Services
             _tokenService = tokenService;
         }
 
-        public async Task<UserDto> Login(string username, string password)
+        public async Task<UserAccessTokenDto> Login(string username, string password)
         {
             var user = await _userRepository.GetUserByUsername(username);
             if (user == null)
@@ -42,8 +42,9 @@ namespace HelloWorld.API.Services
                 throw new InvalidCredentialsException();
             }
 
-            var result = new UserDto
+            var result = new UserAccessTokenDto
             {
+                Id = user.Id,
                 UserName = user.UserName,
                 Token = _tokenService.CreateToken(user)
             };

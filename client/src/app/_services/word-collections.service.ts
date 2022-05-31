@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject, shareReplay } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { CreateWordCollection } from '../_models/create-word-collection';
 import { WordCollection } from '../_models/word-collection';
 import { WordCollectionTheme } from '../_models/word-collection-theme';
 
@@ -13,14 +14,14 @@ export class WordCollectionsService {
   cachedThemes: Observable<WordCollectionTheme[]> = null;
   constructor(private http: HttpClient) { }
 
-  addWordCollection(wordCollection: WordCollection)
+  addWordCollection(wordCollection: CreateWordCollection)
   {
     return this.http.post(this.baseUrl + "collections", wordCollection)
   }
 
-  getWordCollections()
+  getWordCollections(userId: number)
   {
-    return this.http.get<WordCollection[]>(this.baseUrl + "collections");
+    return this.http.get<WordCollection[]>(this.baseUrl + "collections/" + userId);
   }
 
   getWordCollectionThemes()

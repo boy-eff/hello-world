@@ -34,6 +34,13 @@ namespace HelloWorld.API.Controllers
             return Ok(collections);
         }
 
+        [HttpGet("{userId}")]
+        public async Task<ActionResult<IEnumerable<WordCollection>>> GetUserCollections(int userId)
+        {
+            var collections = await _collectionService.GetUserCollectionsAsync(userId);
+            return Ok(collections);
+        }
+
         [HttpPost]
         public async Task<ActionResult> AddCollection(CreateCollectionDto collectionDto)
         {

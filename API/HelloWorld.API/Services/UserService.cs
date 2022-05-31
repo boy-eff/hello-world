@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
+using HelloWorld.API.DTO;
 using HelloWorld.API.Interfaces;
 using HelloWorld.Domain.Entities;
 using HelloWorld.Infrastructure.Interfaces;
@@ -18,10 +19,12 @@ namespace HelloWorld.API.Services
         private readonly IUserRepository _userRepository;
         private readonly IHttpContextAccessor _accessor;
         private readonly IPhotoService _photoService;
+        private readonly IMapper _mapper;
 
         public UserService(UserManager<AppUser> userManager, IUserRepository userRepository,
-            IHttpContextAccessor accessor, IPhotoService photoService)
+            IHttpContextAccessor accessor, IPhotoService photoService, IMapper mapper)
         {
+            _mapper = mapper;
             _photoService = photoService;
             _accessor = accessor;
             _userManager = userManager;
@@ -47,14 +50,16 @@ namespace HelloWorld.API.Services
             return await _userManager.CreateAsync(user, password);
         }
 
-        public async Task<AppUser> GetUserByUsernameAsync(string username)
+        public async Task<UserInfoDto> GetUserByUsernameAsync(string username)
         {
-            return await _userRepository.GetUserByUsername(username);
+            var user = await _userRepository.GetUserByUsername(username);
+            return _mapper.Map<UserInfoDto>(user);
         }
 
-        public async Task<IEnumerable<AppUser>> GetUsersAsync()
+        public async Task<IEnumerable<UserInfoDto>> GetUsersAsync()
         {
-            return await _userRepository.GetUsersAsync();
+            var users = await _userRepository.GetUsersAsync();
+            return _mapper.Map<IEnumerable<AppUser>, IEnumerable<UserInfoDto>>(users);
         }
 
         public async Task<bool> UserExistsAsync(string username)

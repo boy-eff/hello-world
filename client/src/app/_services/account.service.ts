@@ -2,14 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, ReplaySubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { User } from '../_models/user';
+import { UserAccessToken } from '../_models/user-access-token';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
   baseUrl = environment.apiUrl;
-  private currentUserSource = new BehaviorSubject<User>(null);
+  private currentUserSource = new BehaviorSubject<UserAccessToken>(null);
   currentUser$ = this.currentUserSource.asObservable();
   constructor(private http: HttpClient) { }
 
@@ -20,8 +20,8 @@ export class AccountService {
 
   login(model: any)
   {
-    return this.http.post<User>(this.baseUrl + "account/login", model).pipe(
-      map((response: User) => {
+    return this.http.post<UserAccessToken>(this.baseUrl + "account/login", model).pipe(
+      map((response: UserAccessToken) => {
         const user = response;
         if (user) {
           this.setCurrentUser(user);
@@ -30,7 +30,7 @@ export class AccountService {
     )
   }
 
-  setCurrentUser(user: User) {
+  setCurrentUser(user: UserAccessToken) {
     localStorage.setItem('user', JSON.stringify(user));
     this.currentUserSource.next(user);
   }

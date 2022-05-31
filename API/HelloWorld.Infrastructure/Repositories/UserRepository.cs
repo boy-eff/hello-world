@@ -20,7 +20,9 @@ namespace HelloWorld.Infrastructure.Repositories
 
         public async Task<AppUser> GetUserByUsername(string username)
         {
-             return await _context.Users.SingleOrDefaultAsync(x => x.UserName == username.ToLower());
+             return await _context.Users
+                .Include(u => u.Photo)
+                .SingleOrDefaultAsync(x => x.UserName == username.ToLower());
         }
 
         public async Task<IEnumerable<AppUser>> GetUsersAsync()

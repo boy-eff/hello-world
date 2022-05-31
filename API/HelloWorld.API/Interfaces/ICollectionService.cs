@@ -10,5 +10,6 @@ namespace HelloWorld.API.Interfaces
     {
         Task AddCollection(CreateCollectionDto collectionDto, int userId);
         Task<IEnumerable<CollectionDto>> GetCollectionsAsync();
+        Task<IEnumerable<CollectionDto>> GetUserCollectionsAsync(int userId);
     }
 }
