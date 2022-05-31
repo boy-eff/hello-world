@@ -27,6 +27,7 @@ namespace HelloWorld.Infrastructure.Repositories
         {
             return await _context.WordCollections
             .Include(wc => wc.Words)
+            .Include(wc => wc.Theme)
             .ToListAsync();
         }
     }

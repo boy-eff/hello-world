@@ -1,6 +1,7 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { AddCollectionDialogComponent } from '../_dialogs/add-collection-dialog/add-collection-dialog.component';
+import { CreateWordCollection } from '../_models/create-word-collection';
 import { WordCollection } from '../_models/word-collection';
 import { WordCollectionsService } from '../_services/word-collections.service';
 
@@ -21,7 +22,7 @@ export class CollectionsComponent implements OnInit {
 
   openModal() {
     this.modalRef = this.modalService.show(AddCollectionDialogComponent);
-    this.modalRef.content.onClose.subscribe((result: WordCollection) => {
+    this.modalRef.content.onClose.subscribe((result: CreateWordCollection) => {
       if (result !== null)
       {
         this.wordCollections.push(result);
