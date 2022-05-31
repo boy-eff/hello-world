@@ -30,5 +30,14 @@ namespace HelloWorld.Infrastructure.Repositories
             .Include(wc => wc.Theme)
             .ToListAsync();
         }
+
+        public async Task<IEnumerable<WordCollection>> GetUserCollectionsAsync(int userId)
+        {
+            return await _context.WordCollections
+            .Include(wc => wc.Words)
+            .Include(wc => wc.Theme)
+            .Where(wc => wc.OwnerId == userId)
+            .ToListAsync();
+        }
     }
 }

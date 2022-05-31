@@ -19,9 +19,9 @@ export class WordCollectionsService {
     return this.http.post(this.baseUrl + "collections", wordCollection)
   }
 
-  getWordCollections()
+  getWordCollections(userId: number)
   {
-    return this.http.get<WordCollection[]>(this.baseUrl + "collections");
+    return this.http.get<WordCollection[]>(this.baseUrl + "collections/" + userId);
   }
 
   getWordCollectionThemes()

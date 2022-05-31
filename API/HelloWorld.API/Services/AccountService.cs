@@ -44,6 +44,7 @@ namespace HelloWorld.API.Services
 
             var result = new UserAccessTokenDto
             {
+                Id = user.Id,
                 UserName = user.UserName,
                 Token = _tokenService.CreateToken(user)
             };
