@@ -30,6 +30,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { AddCollectionDialogComponent } from './_dialogs/add-collection-dialog/add-collection-dialog.component';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { UsersListComponent } from './users/users-list/users-list.component';
+import { UsersCardComponent } from './users/users-card/users-card.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     CollectionListComponent,
     MemberEditComponent,
     AddCollectionDialogComponent,
+    UsersListComponent,
+    UsersCardComponent,
   ],
   imports: [
     BrowserModule,
