@@ -51,5 +51,12 @@ namespace HelloWorld.API.Services
             var collectionsDto = _mapper.Map<IEnumerable<WordCollection>, IEnumerable<CollectionDto>>(collections);
             return collectionsDto;
         }
+
+        public async Task<CollectionDto> GetWordCollectionAsync(int collectionId)
+        {
+            var collection = await _collectionRepository.GetWordCollectionAsync(collectionId);
+            var dto = _mapper.Map<CollectionDto>(collection);
+            return dto;
+        }
     }
 }

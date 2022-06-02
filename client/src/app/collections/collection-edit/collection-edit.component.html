@@ -1,0 +1,49 @@
+<ng-container *ngIf="wordCollection">
+  <h1>{{wordCollection.name}}</h1>
+  <hr>
+  <p>
+      <mat-form-field appearance="legacy" class="me-3">
+        <mat-label>Collection description</mat-label>
+        <input matInput placeholder="Sample name" [(ngModel)]="wordCollection.description">
+      </mat-form-field>
+  </p>
+  <form (ngSubmit)="addWord()" [formGroup]="wordForm">
+    <mat-form-field appearance="legacy" class="me-3">
+      <mat-label>Word</mat-label>
+      <input #value matInput placeholder="Sample word" [formControl]="wordForm.controls.value">
+    </mat-form-field>
+
+    <mat-form-field appearance="legacy" class="me-3"> 
+      <mat-label>Translation</mat-label>
+      <input matInput placeholder="Sample word" [formControl]="wordForm.controls.translation">
+    </mat-form-field>
+
+    <button type="submit" class="btn btn-primary">Add</button>
+  </form>
+
+  <mat-list class="mb-3">
+    <ng-container *ngFor="let word of words">
+      <mat-divider></mat-divider>
+      <mat-list-item>
+          Word: {{word.value}} Translation: {{word.translation}}
+
+          <div>
+            <button mat-icon-button style="border-radius: 0.4em;" class="bg-danger ms-4"
+            (click)="removeWord(word)">
+            <mat-icon>delete</mat-icon>
+            </button>
+            <button mat-icon-button style="border-radius: 0.4em;" class="bg-primary ms-2"
+            (click)="editWord(word)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          </div>
+          
+      
+        
+      </mat-list-item>
+    </ng-container>
+    <mat-divider></mat-divider>
+  </mat-list>
+  <button type="button" class="btn btn-primary">Save collection</button>
+
+</ng-container>

@@ -27,18 +27,25 @@ namespace HelloWorld.API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<WordCollection>>> GetCollections()
+        public async Task<ActionResult<IEnumerable<CollectionDto>>> GetCollections()
         {
             
             var collections = await _collectionService.GetCollectionsAsync();
             return Ok(collections);
         }
 
-        [HttpGet("{userId}")]
-        public async Task<ActionResult<IEnumerable<WordCollection>>> GetUserCollections(int userId)
+        [HttpGet("users/{userId}")]
+        public async Task<ActionResult<IEnumerable<CollectionDto>>> GetUserCollections(int userId)
         {
             var collections = await _collectionService.GetUserCollectionsAsync(userId);
             return Ok(collections);
+        }
+
+        [HttpGet("{collectionId}")]
+        public async Task<ActionResult<CollectionDto>> GetCollection(int collectionId)
+        {
+            var collection = await _collectionService.GetWordCollectionAsync(collectionId);
+            return Ok(collection);
         }
 
         [HttpPost]

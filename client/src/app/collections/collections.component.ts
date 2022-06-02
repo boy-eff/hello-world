@@ -22,7 +22,7 @@ export class CollectionsComponent implements OnInit {
 
   ngOnInit(): void {
     this.accountService.currentUser$.subscribe(currentUser => this.user = currentUser);
-    this.initializeCollections();
+    this.updateCollections();
   }
 
   openModal() {
@@ -30,14 +30,13 @@ export class CollectionsComponent implements OnInit {
     this.modalRef.content.onClose.subscribe((result: CreateWordCollection) => {
       if (result !== null)
       {
-        this.wordCollections.push(result);
-        this.wordCollectionsService.addWordCollection(result).subscribe();
+        this.wordCollectionsService.addWordCollection(result).subscribe( result => this.updateCollections());
       }
     });
   }
 
-  initializeCollections() {
-    this.wordCollectionsService.getWordCollections(this.user.id).subscribe(
+  updateCollections() {
+    this.wordCollectionsService.getUserCollections(this.user.id).subscribe(
       result => this.wordCollections = result
     )
   }

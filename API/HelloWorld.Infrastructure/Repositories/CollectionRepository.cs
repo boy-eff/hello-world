@@ -39,5 +39,13 @@ namespace HelloWorld.Infrastructure.Repositories
             .Where(wc => wc.OwnerId == userId)
             .ToListAsync();
         }
+
+        public async Task<WordCollection> GetWordCollectionAsync(int collectionId)
+        {
+            return await _context.WordCollections
+            .Include(wc => wc.Words)
+            .Include(wc => wc.Theme)
+            .SingleOrDefaultAsync(wc => wc.Id == collectionId);
+        }
     }
 }
