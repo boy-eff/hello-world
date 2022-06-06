@@ -6,7 +6,7 @@ using HelloWorld.Domain.Entities;
 
 namespace HelloWorld.API.DTO
 {
-    public class CreateCollectionDto
+    public class CollectionCreateDto
     {
         public string Name { get; set; }
         public int ThemeId { get; set; }

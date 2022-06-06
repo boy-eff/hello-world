@@ -8,10 +8,10 @@ namespace HelloWorld.API.Interfaces
 {
     public interface ICollectionService
     {
-        Task AddCollection(CreateCollectionDto collectionDto, int userId);
+        Task AddCollection(CollectionCreateDto collectionDto, int userId);
         Task<IEnumerable<CollectionDto>> GetCollectionsAsync();
         Task<IEnumerable<CollectionDto>> GetUserCollectionsAsync(int userId);
         Task<CollectionDto> GetWordCollectionAsync(int collectionId);
-        Task UpdateCollectionAsync(UpdateCollectionDto dto);
+        Task UpdateCollectionAsync(CollectionUpdateDto dto);
     }
 }

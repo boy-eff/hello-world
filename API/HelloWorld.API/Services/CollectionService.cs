@@ -33,7 +33,7 @@ namespace HelloWorld.API.Services
             
         }
 
-        public async Task AddCollection(CreateCollectionDto collectionDto, int userId)
+        public async Task AddCollection(CollectionCreateDto collectionDto, int userId)
         {
             var collection = _mapper.Map<WordCollection>(collectionDto);
             collection.Theme = await _collectionThemeRepository.GetThemeByIdAsync(collectionDto.ThemeId);
@@ -62,7 +62,7 @@ namespace HelloWorld.API.Services
             return dto;
         }
 
-        public async Task UpdateCollectionAsync(UpdateCollectionDto dto)
+        public async Task UpdateCollectionAsync(CollectionUpdateDto dto)
         {
             await _wordRepository.RemoveWordsByCollectionAsync(dto.Id);
             _mapper.Map<Word>(dto.Words);

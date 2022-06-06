@@ -1,4 +1,4 @@
-export interface CreateWordCollection {
+export interface WordCollectionCreate {
     name: string;
     themeName: string;
     themeId: number;

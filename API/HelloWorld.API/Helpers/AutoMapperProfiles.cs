@@ -14,7 +14,7 @@ namespace HelloWorld.API.Helpers
         {
             CreateMap<RegisterDto, AppUser>()
                 .ForMember(u => u.UserName, u => u.MapFrom(r => r.UserName.ToLower()));
-            CreateMap<CreateCollectionDto, WordCollection>()
+            CreateMap<CollectionCreateDto, WordCollection>()
                 .ForMember(wc => wc.WordCollectionThemeId, wc => wc.MapFrom(cc => cc.ThemeId));
             CreateMap<Word, WordDto>().ReverseMap();
             CreateMap<WordCollection, CollectionDto>()
@@ -23,7 +23,7 @@ namespace HelloWorld.API.Helpers
             CreateMap<WordCollectionTheme, WordCollectionThemeDto>();
             CreateMap<AppUser, UserInfoDto>()
                 .ForMember(member => member.PhotoUrl, m => m.MapFrom(u => u.Photo.Url));
-            CreateMap<UpdateCollectionDto, WordCollection>()
+            CreateMap<CollectionUpdateDto, WordCollection>()
                 .ForMember(wc => wc.OwnerId, dto => dto.MapFrom(dto => dto.UserId));
             CreateMap<WordDto, Word>();
         }

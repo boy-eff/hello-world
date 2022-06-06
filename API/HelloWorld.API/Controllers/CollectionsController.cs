@@ -48,7 +48,7 @@ namespace HelloWorld.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> AddCollection(CreateCollectionDto collectionDto)
+        public async Task<ActionResult> AddCollection(CollectionCreateDto collectionDto)
         {
             int ownerId = Int32.Parse(_userManager.GetUserId(User));
             await _collectionService.AddCollection(collectionDto, ownerId);
@@ -56,7 +56,7 @@ namespace HelloWorld.API.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateCollection(UpdateCollectionDto collectionDto)
+        public async Task<IActionResult> UpdateCollection(CollectionUpdateDto collectionDto)
         {
             int ownerId = Int32.Parse(_userManager.GetUserId(User));
             if (ownerId != collectionDto.UserId)
