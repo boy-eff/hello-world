@@ -47,5 +47,10 @@ namespace HelloWorld.Infrastructure.Repositories
             .Include(wc => wc.Theme)
             .SingleOrDefaultAsync(wc => wc.Id == collectionId);
         }
+
+        public Task UpdateCollection(WordCollection collection)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

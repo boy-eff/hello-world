@@ -38,6 +38,7 @@ export class CollectionEditComponent implements OnInit {
   addWord()
   {
     this.words.push(this.wordForm.value);
+    console.log(this.wordForm.value);
     this.formValue.nativeElement.focus();
     this.wordForm.reset();
     this.formDirective.resetForm();

@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace HelloWorld.API.DTO
 {
-    public class WordDto
+    public class UpdateCollectionDto
     {
         public int Id { get; set; }
-        public string Value { get; set; }
-        public string Translation { get; set; }
-        public int WordCollectionId { get; set; }
+        public int Description { get; set; }
+        public int UserId { get; set; }
+        public ICollection<WordDto> Words { get; set; }
     }
 }

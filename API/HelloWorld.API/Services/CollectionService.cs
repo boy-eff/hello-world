@@ -8,6 +8,7 @@ using HelloWorld.API.Interfaces;
 using HelloWorld.Domain.Entities;
 using HelloWorld.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 
 namespace HelloWorld.API.Services
 {
@@ -17,11 +18,13 @@ namespace HelloWorld.API.Services
         private readonly UserManager<AppUser> _userManager;
         private readonly IUserService _userService;
         private readonly ICollectionRepository _collectionRepository;
-        
         private readonly ICollectionThemeRepository _collectionThemeRepository;
+        private readonly IWordRepository _wordRepository;
         public CollectionService(ICollectionRepository collectionRepository, IMapper mapper,
-         UserManager<AppUser> userManager, IUserService userService, ICollectionThemeRepository collectionThemeRepository)
+         UserManager<AppUser> userManager, IUserService userService,
+        ICollectionThemeRepository collectionThemeRepository, IWordRepository wordRepository)
         {
+            _wordRepository = wordRepository;
             _collectionThemeRepository = collectionThemeRepository;
             _collectionRepository = collectionRepository;
             _userService = userService;
@@ -57,6 +60,12 @@ namespace HelloWorld.API.Services
             var collection = await _collectionRepository.GetWordCollectionAsync(collectionId);
             var dto = _mapper.Map<CollectionDto>(collection);
             return dto;
+        }
+
+        public async Task UpdateCollectionAsync(UpdateCollectionDto dto)
+        {
+            await _wordRepository.RemoveWordsByCollectionAsync(dto.Id);
+            _mapper.Map<Word>(dto.Words);
         }
     }
 }

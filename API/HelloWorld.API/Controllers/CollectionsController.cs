@@ -1,15 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using HelloWorld.API.DTO;
 using HelloWorld.Domain.Entities;
 using HelloWorld.API.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using HelloWorld.Infrastructure.Interfaces;
+using HelloWorld.API.Services;
 
 namespace HelloWorld.API.Controllers
 {
@@ -18,9 +12,14 @@ namespace HelloWorld.API.Controllers
         private readonly ICollectionService _collectionService;
         private readonly UserManager<AppUser> _userManager;
         private readonly ICollectionThemeService _collectionThemeService;
-        public CollectionsController(ICollectionService collectionService,
-         UserManager<AppUser> userManager, ICollectionThemeService collectionThemeService)
+        private readonly IUserService _userService;
+        private readonly IWordService _wordService;
+        public CollectionsController(ICollectionService collectionService, IUserService userService,
+         UserManager<AppUser> userManager, ICollectionThemeService collectionThemeService,
+         IWordService wordService)
         {
+            _wordService = wordService;
+            _userService = userService;
             _collectionThemeService = collectionThemeService;
             _userManager = userManager;
             _collectionService = collectionService;
@@ -55,6 +54,26 @@ namespace HelloWorld.API.Controllers
             await _collectionService.AddCollection(collectionDto, ownerId);
             return Ok();
         }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateCollection(UpdateCollectionDto collectionDto)
+        {
+            int ownerId = Int32.Parse(_userManager.GetUserId(User));
+            if (ownerId != collectionDto.UserId)
+            {
+                return Unauthorized();
+            }
+            await _collectionService.UpdateCollectionAsync(collectionDto);
+            return Ok();
+        }
+
+        [HttpPost("words")]
+        public async Task<ActionResult> AddWords(WordDto[] wordDto)
+        {
+            await _wordService.AddWordsAsync(wordDto);
+            return Ok();
+        }
+
         [HttpGet("themes")]
         public async Task<ActionResult> GetCollectionThemes()
         {
