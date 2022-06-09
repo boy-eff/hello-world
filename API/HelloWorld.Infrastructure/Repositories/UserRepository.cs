@@ -27,7 +27,9 @@ namespace HelloWorld.Infrastructure.Repositories
 
         public async Task<IEnumerable<AppUser>> GetUsersAsync()
         {
-            return await _context.Users.ToListAsync();
+            return await _context.Users
+                .Include(u => u.Photo)
+                .ToListAsync();
         }
 
         public async Task AddPhoto(AppUser user, Photo photo)
