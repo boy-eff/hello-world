@@ -37,6 +37,13 @@ namespace HelloWorld.API.Services
             return _wordRepository.GetWordById(wordId);
         }
 
+        public async Task<IEnumerable<WordDto>> GetWordsByCollection(int collectionId)
+        {
+            var words = _mapper.Map<IEnumerable<Word>,
+                IEnumerable<WordDto>>(await _wordRepository.GetWordsByCollection(collectionId));
+            return words;
+        }
+
         public async Task RemoveWordsByCollectionAsync(int collectionId)
         {
             await _wordRepository.RemoveWordsByCollectionAsync(collectionId);

@@ -34,9 +34,10 @@ export class WordCollectionsService {
   {
     if (!this.cachedThemes)
     {
-      this.cachedThemes = this.http.get<WordCollectionTheme[]>(this.baseUrl + "collections/themes").pipe(
+      this.cachedThemes = this.http.get<WordCollectionTheme[]>(this.baseUrl + "collections/themes")
+        .pipe(
         shareReplay(1)
-      );
+        );
     }
     return this.cachedThemes;
   }

@@ -62,6 +62,13 @@ namespace HelloWorld.API.Controllers
             return Ok();
         }
 
+        [HttpGet("{collectionId}/words")]
+        public async Task<IActionResult> GetWordsByCollection(int collectionId)
+        {
+            var words = await _wordService.GetWordsByCollection(collectionId);
+            return Ok(words);
+        }
+
         [HttpPut]
         public async Task<IActionResult> UpdateCollection(CollectionUpdateDto collectionDto)
         {

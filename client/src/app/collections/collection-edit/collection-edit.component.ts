@@ -27,8 +27,15 @@ export class CollectionEditComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.route.snapshot.params["id"];
     this.collectionsService.getWordCollection(this.id).subscribe(
-      result => this.wordCollection = result
-    )
+      result => {
+        this.wordCollection = result;
+        this.initializeWords();
+      }
+    );
+    this.initializeForm();
+  }
+  
+  initializeForm() {
     this.wordForm = this.fb.group(
       {
         "value": ['', Validators.required],
@@ -38,7 +45,6 @@ export class CollectionEditComponent implements OnInit {
   }
 
   initializeWords() {
-    
      this.wordCollection.words.forEach(el => {
       this.words.push({
         id: el.id,

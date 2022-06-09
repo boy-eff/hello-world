@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using HelloWorld.Domain.Entities;
 using HelloWorld.Infrastructure.Data;
 using HelloWorld.Infrastructure.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace HelloWorld.Infrastructure.Repositories
 {
@@ -31,6 +32,11 @@ namespace HelloWorld.Infrastructure.Repositories
         public Word GetWordById(int wordId)
         {
             return _context.Words.FirstOrDefault(word => word.Id == wordId);
+        }
+
+        public async Task<IEnumerable<Word>> GetWordsByCollection(int collectionId)
+        {
+            return await _context.Words.Where(word => word.WordCollectionId == collectionId).ToListAsync();
         }
 
         public async Task RemoveWordsByCollectionAsync(int wordCollectionId)

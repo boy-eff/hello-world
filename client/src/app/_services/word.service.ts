@@ -11,8 +11,13 @@ export class WordService {
 
   constructor(private http: HttpClient) { }
 
-  updateCollectionWords(colllectionId: number, words: Word[])
+  updateCollectionWords(collectionId: number, words: Word[])
   {
-    return this.http.post<Word[]>(this.baseUrl + "collections/" + colllectionId + "/words", words);
+    return this.http.post<Word[]>(this.baseUrl + "collections/" + collectionId + "/words", words);
+  }
+
+  getCollectionWords(collectionId: number)
+  {
+    return this.http.get<Word[]>(this.baseUrl + "collections/" + collectionId + "/words")
   }
 }

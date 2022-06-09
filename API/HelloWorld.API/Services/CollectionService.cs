@@ -71,9 +71,7 @@ namespace HelloWorld.API.Services
         {
             foreach (var wordDto in words)
             {
-                System.Console.WriteLine("WordDto - " + wordDto.Value);
                 var word = _wordService.GetWordById(wordDto.Id);
-                System.Console.WriteLine("Word - " + word?.Value);
                 if (word != null)
                 {
                     _mapper.Map(wordDto, word);
