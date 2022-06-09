@@ -12,5 +12,6 @@ namespace HelloWorld.Domain.Entities
         public int WordCollectionId { get; set; }
         public WordCollection WordCollection { get; set; }
         public ICollection<WordToWordDictionary> WordDictionaries { get; set; }
+        public bool IsDeleted { get; set; } = false;
     }
 }
