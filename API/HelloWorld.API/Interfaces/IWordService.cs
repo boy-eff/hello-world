@@ -14,5 +14,6 @@ namespace HelloWorld.API.Interfaces
         Task RemoveWordsByCollectionAsync(int collectionId);
         Word GetWordById(int wordId);
         Task<IEnumerable<WordDto>> GetWordsByCollection(int collectionId);
+        Task DeleteWordAsync(int wordId);
     }
 }

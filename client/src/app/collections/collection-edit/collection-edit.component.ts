@@ -7,6 +7,7 @@ import { Word } from 'src/app/_models/word';
 import { WordCollection } from 'src/app/_models/word-collection';
 import { WordEdit } from 'src/app/_models/word-edit';
 import { WordCollectionsService } from 'src/app/_services/word-collections.service';
+import { WordService } from 'src/app/_services/word.service';
 
 @Component({
   selector: 'app-collection-edit',
@@ -21,7 +22,7 @@ export class CollectionEditComponent implements OnInit {
   @ViewChild('value') formValue : ElementRef; 
   @ViewChild(FormGroupDirective) formDirective: FormGroupDirective;
 
-  constructor(private fb: FormBuilder, private dialog: MatDialog,
+  constructor(private fb: FormBuilder, private dialog: MatDialog, private wordService: WordService,
      private collectionsService: WordCollectionsService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -51,17 +52,22 @@ export class CollectionEditComponent implements OnInit {
         value: el.value,
         translation: el.translation,
         wordCollectionId: el.wordCollectionId,
-        modified: false
+        isModified: false,
+        isDeleted: false
       })
      })
   }
 
   addWord()
   {
-    let word = this.wordForm.value;
-    word.modified = true;
-    word.wordCollectionId = this.id;
-    this.words.push(this.wordForm.value);
+    this.words.push({
+      id: null,
+      value: this.wordForm.value.value,
+      translation: this.wordForm.value.translation,
+      wordCollectionId: this.id,
+      isModified: true,
+      isDeleted: false
+    });
     this.formValue.nativeElement.focus();
     this.wordForm.reset();
     this.formDirective.resetForm();
@@ -69,10 +75,7 @@ export class CollectionEditComponent implements OnInit {
 
   removeWord(word: WordEdit)
   {
-    const index = this.words.indexOf(word, 0);
-    if (index > -1) {
-    this.words.splice(index, 1);
-    }
+    word.isDeleted = true;
   }
 
   editWord(word: WordEdit)
@@ -85,14 +88,20 @@ export class CollectionEditComponent implements OnInit {
     let dialogRef = this.dialog.open(EditWordComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(
       data => {
-        word.value = data.value;
-        word.translation = data.translation;
+        if (data)
+        {
+          word.value = data.value;
+          word.translation = data.translation;
+          word.isModified = true;
+        }
       }
     )
   }
 
   saveChanges() {
-
+    this.wordService.updateCollectionWords(this.id, this.words.filter
+      (word =>  word.isModified || word.isDeleted)
+    ).subscribe();
   }
 
 }

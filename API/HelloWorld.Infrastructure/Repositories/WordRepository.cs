@@ -29,6 +29,13 @@ namespace HelloWorld.Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
+        public async Task DeleteWordAsync(int wordId)
+        {
+            var word = await _context.Words.FirstOrDefaultAsync(w => w.Id == wordId);
+            word.IsDeleted = true;
+            await _context.SaveChangesAsync();
+        }
+
         public Word GetWordById(int wordId)
         {
             return _context.Words.FirstOrDefault(word => word.Id == wordId);

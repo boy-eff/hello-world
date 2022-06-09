@@ -32,6 +32,11 @@ namespace HelloWorld.API.Services
             await _wordRepository.AddWordsAsync(words);
         }
 
+        public async Task DeleteWordAsync(int wordId)
+        {
+            await _wordRepository.DeleteWordAsync(wordId);
+        }
+
         public Word GetWordById(int wordId)
         {
             return _wordRepository.GetWordById(wordId);

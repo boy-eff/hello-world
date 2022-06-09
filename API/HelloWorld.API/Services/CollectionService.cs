@@ -71,13 +71,17 @@ namespace HelloWorld.API.Services
         {
             foreach (var wordDto in words)
             {
-                if (wordDto.Id != null)
+                if (wordDto.IsDeleted && wordDto.Id != null)
+                {
+                    await _wordService.DeleteWordAsync(wordDto.Id.GetValueOrDefault());
+                }
+                else if (wordDto.Id != null)
                 {
                     var word = _wordService.GetWordById(wordDto.Id.GetValueOrDefault());
                     _mapper.Map(wordDto, word);
                     await _collectionRepository.SaveChangesAsync();
                 }
-                else
+                else if (!wordDto.IsDeleted)
                 {
                     await _wordService.AddWordAsync(wordDto);
                 }

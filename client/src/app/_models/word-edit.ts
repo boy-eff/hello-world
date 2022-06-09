@@ -3,5 +3,6 @@ export interface WordEdit {
     value: string;
     translation: string;
     wordCollectionId: number;
-    modified: boolean;
+    isModified: boolean;
+    isDeleted: boolean;
 }
