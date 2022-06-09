@@ -28,6 +28,11 @@ namespace HelloWorld.Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
+        public Word GetWordById(int wordId)
+        {
+            return _context.Words.FirstOrDefault(word => word.Id == wordId);
+        }
+
         public async Task RemoveWordsByCollectionAsync(int wordCollectionId)
         {
             _context.Remove(_context.Words.Where(word => word.WordCollectionId == wordCollectionId));

@@ -48,9 +48,14 @@ namespace HelloWorld.Infrastructure.Repositories
             .SingleOrDefaultAsync(wc => wc.Id == collectionId);
         }
 
-        public Task UpdateCollection(WordCollection collection)
+        public async Task SaveChangesAsync()
         {
-            throw new NotImplementedException();
+            await _context.SaveChangesAsync();
+        }
+
+        public void UpdateCollection(WordCollection collection)
+        {
+            _context.Entry(collection).State = EntityState.Modified;
         }
     }
 }

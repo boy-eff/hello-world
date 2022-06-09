@@ -4,7 +4,7 @@ import { waitForAsync } from '@angular/core/testing';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { BehaviorSubject } from 'rxjs';
-import { CreateWordCollection } from 'src/app/_models/create-word-collection';
+import { WordCollectionCreate } from 'src/app/_models/word-collection-create';
 import { WordCollection } from 'src/app/_models/word-collection';
 import { WordCollectionTheme } from 'src/app/_models/word-collection-theme';
 import { ValidatorsService } from 'src/app/_services/validators.service';
@@ -18,8 +18,8 @@ import { WordCollectionsService } from 'src/app/_services/word-collections.servi
 export class AddCollectionDialogComponent implements OnInit {
   addForm: FormGroup;
   isDataAvailable: boolean = false;
-  onClose: BehaviorSubject<CreateWordCollection>;
-  result: CreateWordCollection;
+  onClose: BehaviorSubject<WordCollectionCreate>;
+  result: WordCollectionCreate;
   themes: WordCollectionTheme[] = [];
   constructor(private fb: FormBuilder, private collectionsService: WordCollectionsService,
      public modalRef: BsModalRef, private validatorsService: ValidatorsService) { }

@@ -31,5 +31,15 @@ namespace HelloWorld.API.Services
             var words = _mapper.Map<ICollection<WordDto>, ICollection<Word>>(wordsDto);
             await _wordRepository.AddWordsAsync(words);
         }
+
+        public Word GetWordById(int wordId)
+        {
+            return _wordRepository.GetWordById(wordId);
+        }
+
+        public async Task RemoveWordsByCollectionAsync(int collectionId)
+        {
+            await _wordRepository.RemoveWordsByCollectionAsync(collectionId);
+        }
     }
 }

@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { EditWordComponent } from 'src/app/_dialogs/edit-word/edit-word.component';
 import { Word } from 'src/app/_models/word';
 import { WordCollection } from 'src/app/_models/word-collection';
+import { WordEdit } from 'src/app/_models/word-edit';
 import { WordCollectionsService } from 'src/app/_services/word-collections.service';
 
 @Component({
@@ -14,8 +15,9 @@ import { WordCollectionsService } from 'src/app/_services/word-collections.servi
 })
 export class CollectionEditComponent implements OnInit {
   wordCollection: WordCollection;
-  words : Word[] = [];
+  words : WordEdit[] = [];
   wordForm : FormGroup;
+  id : number;
   @ViewChild('value') formValue : ElementRef; 
   @ViewChild(FormGroupDirective) formDirective: FormGroupDirective;
 
@@ -23,8 +25,8 @@ export class CollectionEditComponent implements OnInit {
      private collectionsService: WordCollectionsService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    let id = this.route.snapshot.params["id"];
-    this.collectionsService.getWordCollection(id).subscribe(
+    this.id = this.route.snapshot.params["id"];
+    this.collectionsService.getWordCollection(this.id).subscribe(
       result => this.wordCollection = result
     )
     this.wordForm = this.fb.group(
@@ -35,16 +37,31 @@ export class CollectionEditComponent implements OnInit {
     )
   }
 
+  initializeWords() {
+    
+     this.wordCollection.words.forEach(el => {
+      this.words.push({
+        id: el.id,
+        value: el.value,
+        translation: el.translation,
+        wordCollectionId: el.wordCollectionId,
+        modified: false
+      })
+     })
+  }
+
   addWord()
   {
+    let word = this.wordForm.value;
+    word.modified = true;
+    word.wordCollectionId = this.id;
     this.words.push(this.wordForm.value);
-    console.log(this.wordForm.value);
     this.formValue.nativeElement.focus();
     this.wordForm.reset();
     this.formDirective.resetForm();
   }
 
-  removeWord(word: Word)
+  removeWord(word: WordEdit)
   {
     const index = this.words.indexOf(word, 0);
     if (index > -1) {
@@ -52,7 +69,7 @@ export class CollectionEditComponent implements OnInit {
     }
   }
 
-  editWord(word: Word)
+  editWord(word: WordEdit)
   {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.height = "300px";
@@ -66,6 +83,10 @@ export class CollectionEditComponent implements OnInit {
         word.translation = data.translation;
       }
     )
+  }
+
+  saveChanges() {
+
   }
 
 }

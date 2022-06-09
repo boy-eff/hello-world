@@ -55,6 +55,13 @@ namespace HelloWorld.API.Controllers
             return Ok();
         }
 
+        [HttpPost("{collectionId}/words")]
+        public async Task<IActionResult> UpdateWords(int collectionId, WordDto[] words)
+        {
+            await _collectionService.UpdateWordsAsync(collectionId, words);
+            return Ok();
+        }
+
         [HttpPut]
         public async Task<IActionResult> UpdateCollection(CollectionUpdateDto collectionDto)
         {
@@ -64,13 +71,6 @@ namespace HelloWorld.API.Controllers
                 return Unauthorized();
             }
             await _collectionService.UpdateCollectionAsync(collectionDto);
-            return Ok();
-        }
-
-        [HttpPost("words")]
-        public async Task<ActionResult> AddWords(WordDto[] wordDto)
-        {
-            await _wordService.AddWordsAsync(wordDto);
             return Ok();
         }
 

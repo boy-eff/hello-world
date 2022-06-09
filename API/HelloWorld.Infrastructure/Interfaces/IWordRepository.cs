@@ -11,5 +11,6 @@ namespace HelloWorld.Infrastructure.Interfaces
         Task AddWordAsync(Word word);
         Task AddWordsAsync(ICollection<Word> words);
         Task RemoveWordsByCollectionAsync(int wordCollectionId);
+        Word GetWordById(int wordId);
     }
 }

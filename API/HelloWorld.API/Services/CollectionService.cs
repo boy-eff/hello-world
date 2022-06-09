@@ -19,12 +19,12 @@ namespace HelloWorld.API.Services
         private readonly IUserService _userService;
         private readonly ICollectionRepository _collectionRepository;
         private readonly ICollectionThemeRepository _collectionThemeRepository;
-        private readonly IWordRepository _wordRepository;
+        private readonly IWordService _wordService;
         public CollectionService(ICollectionRepository collectionRepository, IMapper mapper,
          UserManager<AppUser> userManager, IUserService userService,
-        ICollectionThemeRepository collectionThemeRepository, IWordRepository wordRepository)
+        ICollectionThemeRepository collectionThemeRepository, IWordService wordService)
         {
-            _wordRepository = wordRepository;
+            _wordService = wordService;
             _collectionThemeRepository = collectionThemeRepository;
             _collectionRepository = collectionRepository;
             _userService = userService;
@@ -64,8 +64,26 @@ namespace HelloWorld.API.Services
 
         public async Task UpdateCollectionAsync(CollectionUpdateDto dto)
         {
-            await _wordRepository.RemoveWordsByCollectionAsync(dto.Id);
-            _mapper.Map<Word>(dto.Words);
+            throw new NotImplementedException();
+        }
+
+        public async Task UpdateWordsAsync(int collectionId, WordDto[] words)
+        {
+            foreach (var wordDto in words)
+            {
+                System.Console.WriteLine("WordDto - " + wordDto.Value);
+                var word = _wordService.GetWordById(wordDto.Id);
+                System.Console.WriteLine("Word - " + word?.Value);
+                if (word != null)
+                {
+                    _mapper.Map(wordDto, word);
+                    await _collectionRepository.SaveChangesAsync();
+                }
+                else
+                {
+                    await _wordService.AddWordAsync(wordDto);
+                }
+            }
         }
     }
 }

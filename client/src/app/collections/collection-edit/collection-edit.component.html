@@ -1,12 +1,12 @@
 <ng-container *ngIf="wordCollection">
   <h1>{{wordCollection.name}}</h1>
   <hr>
-  <p>
+  <!-- <p>
       <mat-form-field appearance="legacy" class="me-3">
         <mat-label>Collection description</mat-label>
         <input matInput placeholder="Sample name" [(ngModel)]="wordCollection.description">
       </mat-form-field>
-  </p>
+  </p> -->
   <form (ngSubmit)="addWord()" [formGroup]="wordForm">
     <mat-form-field appearance="legacy" class="me-3">
       <mat-label>Word</mat-label>
@@ -18,7 +18,7 @@
       <input matInput placeholder="Sample word" [formControl]="wordForm.controls.translation">
     </mat-form-field>
 
-    <button type="submit" class="btn btn-primary">Add</button>
+    <button type="submit" class="btn btn-primary" [disabled]="!wordForm.valid">Add</button>
   </form>
 
   <mat-list class="mb-3">
@@ -36,14 +36,11 @@
             (click)="editWord(word)">
             <mat-icon>edit</mat-icon>
           </button>
-          </div>
-          
-      
-        
+          </div>  
       </mat-list-item>
     </ng-container>
     <mat-divider></mat-divider>
   </mat-list>
-  <button type="button" class="btn btn-primary">Save collection</button>
+  <button type="button" class="btn btn-primary">Save changes</button>
 
 </ng-container>

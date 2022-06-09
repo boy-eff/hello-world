@@ -10,6 +10,5 @@ namespace HelloWorld.API.DTO
         public int Id { get; set; }
         public int Description { get; set; }
         public int UserId { get; set; }
-        public ICollection<WordDto> Words { get; set; }
     }
 }
