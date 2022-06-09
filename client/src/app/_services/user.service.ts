@@ -15,6 +15,10 @@ export class UserService {
     return this.http.get<UserInfo>(this.baseUrl + "users/" + username);
   }
 
+  getUsers(): Observable<UserInfo[]> {
+    return this.http.get<UserInfo[]>(this.baseUrl + "users");
+  }
+
   uploadPhoto(photo: File)
   {
     let formData = new FormData();
