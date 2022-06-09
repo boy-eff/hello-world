@@ -52,10 +52,5 @@ namespace HelloWorld.Infrastructure.Repositories
         {
             await _context.SaveChangesAsync();
         }
-
-        public void UpdateCollection(WordCollection collection)
-        {
-            _context.Entry(collection).State = EntityState.Modified;
-        }
     }
 }

@@ -10,8 +10,6 @@ namespace HelloWorld.API.Interfaces
     public interface IWordService
     {
         Task AddWordAsync(WordDto word);
-        Task AddWordsAsync(ICollection<WordDto> wordsDto);
-        Task RemoveWordsByCollectionAsync(int collectionId);
         Word GetWordById(int wordId);
         Task<IEnumerable<WordDto>> GetWordsByCollection(int collectionId);
         Task DeleteWordAsync(int wordId);

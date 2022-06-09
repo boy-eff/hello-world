@@ -23,12 +23,6 @@ namespace HelloWorld.Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task AddWordsAsync(ICollection<Word> words)
-        {
-            await _context.AddRangeAsync(words);
-            await _context.SaveChangesAsync();
-        }
-
         public async Task DeleteWordAsync(int wordId)
         {
             var word = await _context.Words.FirstOrDefaultAsync(w => w.Id == wordId);
@@ -44,12 +38,6 @@ namespace HelloWorld.Infrastructure.Repositories
         public async Task<IEnumerable<Word>> GetWordsByCollection(int collectionId)
         {
             return await _context.Words.Where(word => word.WordCollectionId == collectionId).ToListAsync();
-        }
-
-        public async Task RemoveWordsByCollectionAsync(int wordCollectionId)
-        {
-            _context.Remove(_context.Words.Where(word => word.WordCollectionId == wordCollectionId));
-            await _context.SaveChangesAsync();
         }
     }
 }

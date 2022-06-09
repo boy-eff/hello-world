@@ -62,11 +62,6 @@ namespace HelloWorld.API.Services
             return dto;
         }
 
-        public async Task UpdateCollectionAsync(CollectionUpdateDto dto)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task UpdateWordsAsync(int collectionId, WordDto[] words)
         {
             foreach (var wordDto in words)

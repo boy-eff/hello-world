@@ -12,7 +12,6 @@ namespace HelloWorld.Infrastructure.Interfaces
         Task AddCollection(WordCollection collection);
         Task<IEnumerable<WordCollection>> GetUserCollectionsAsync(int userId);
         Task<WordCollection> GetWordCollectionAsync(int collectionId);
-        void UpdateCollection(WordCollection collection);
         Task SaveChangesAsync();
     }
 }

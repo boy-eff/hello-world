@@ -69,18 +69,6 @@ namespace HelloWorld.API.Controllers
             return Ok(words);
         }
 
-        [HttpPut]
-        public async Task<IActionResult> UpdateCollection(CollectionUpdateDto collectionDto)
-        {
-            int ownerId = Int32.Parse(_userManager.GetUserId(User));
-            if (ownerId != collectionDto.UserId)
-            {
-                return Unauthorized();
-            }
-            await _collectionService.UpdateCollectionAsync(collectionDto);
-            return Ok();
-        }
-
         [HttpGet("themes")]
         public async Task<ActionResult> GetCollectionThemes()
         {

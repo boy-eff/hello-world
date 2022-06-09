@@ -26,12 +26,6 @@ namespace HelloWorld.API.Services
             await _wordRepository.AddWordAsync(word);
         }
 
-        public async Task AddWordsAsync(ICollection<WordDto> wordsDto)
-        {
-            var words = _mapper.Map<ICollection<WordDto>, ICollection<Word>>(wordsDto);
-            await _wordRepository.AddWordsAsync(words);
-        }
-
         public async Task DeleteWordAsync(int wordId)
         {
             await _wordRepository.DeleteWordAsync(wordId);
@@ -47,11 +41,6 @@ namespace HelloWorld.API.Services
             var words = _mapper.Map<IEnumerable<Word>,
                 IEnumerable<WordDto>>(await _wordRepository.GetWordsByCollection(collectionId));
             return words;
-        }
-
-        public async Task RemoveWordsByCollectionAsync(int collectionId)
-        {
-            await _wordRepository.RemoveWordsByCollectionAsync(collectionId);
         }
     }
 }
