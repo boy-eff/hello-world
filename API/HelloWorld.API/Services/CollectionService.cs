@@ -71,9 +71,9 @@ namespace HelloWorld.API.Services
         {
             foreach (var wordDto in words)
             {
-                var word = _wordService.GetWordById(wordDto.Id);
-                if (word != null)
+                if (wordDto.Id != null)
                 {
+                    var word = _wordService.GetWordById(wordDto.Id.GetValueOrDefault());
                     _mapper.Map(wordDto, word);
                     await _collectionRepository.SaveChangesAsync();
                 }
