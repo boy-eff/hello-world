@@ -1,7 +1,7 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { AddCollectionDialogComponent } from '../_dialogs/add-collection-dialog/add-collection-dialog.component';
-import { CreateWordCollection } from '../_models/create-word-collection';
+import { WordCollectionCreate } from '../_models/word-collection-create';
 import { UserAccessToken } from '../_models/user-access-token';
 import { WordCollection } from '../_models/word-collection';
 import { AccountService } from '../_services/account.service';
@@ -22,22 +22,21 @@ export class CollectionsComponent implements OnInit {
 
   ngOnInit(): void {
     this.accountService.currentUser$.subscribe(currentUser => this.user = currentUser);
-    this.initializeCollections();
+    this.updateCollections();
   }
 
   openModal() {
     this.modalRef = this.modalService.show(AddCollectionDialogComponent);
-    this.modalRef.content.onClose.subscribe((result: CreateWordCollection) => {
+    this.modalRef.content.onClose.subscribe((result: WordCollectionCreate) => {
       if (result !== null)
       {
-        this.wordCollections.push(result);
-        this.wordCollectionsService.addWordCollection(result).subscribe();
+        this.wordCollectionsService.addWordCollection(result).subscribe( result => this.updateCollections());
       }
     });
   }
 
-  initializeCollections() {
-    this.wordCollectionsService.getWordCollections(this.user.id).subscribe(
+  updateCollections() {
+    this.wordCollectionsService.getUserCollections(this.user.id).subscribe(
       result => this.wordCollections = result
     )
   }

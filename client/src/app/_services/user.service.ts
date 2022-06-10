@@ -7,11 +7,11 @@ import { UserInfo } from '../_models/user-info';
 @Injectable({
   providedIn: 'root'
 })
-export class MemberService {
+export class UserService {
   baseUrl = environment.apiUrl;
   constructor(private http: HttpClient) { }
 
-  getMemberByUsername(username: string): Observable<UserInfo> {
+  getUserByUsername(username: string): Observable<UserInfo> {
     return this.http.get<UserInfo>(this.baseUrl + "users/" + username);
   }
 

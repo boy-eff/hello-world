@@ -5,12 +5,10 @@ using System.Threading.Tasks;
 
 namespace HelloWorld.API.DTO
 {
-    public class WordDto
+    public class WordCreateDto
     {
-        public int? Id { get; set; }
         public string Value { get; set; }
         public string Translation { get; set; }
         public int WordCollectionId { get; set; }
-        public bool IsDeleted { get; set; }
     }
 }

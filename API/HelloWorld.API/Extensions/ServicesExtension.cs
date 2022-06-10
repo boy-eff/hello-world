@@ -19,6 +19,7 @@ namespace HelloWorld.API.Extensions
             services.AddScoped<ICollectionService, CollectionService>();
             services.AddScoped<ICollectionThemeService, CollectionThemeService>();
             services.AddScoped<IPhotoService, PhotoService>();
+            services.AddScoped<IWordService, WordService>();
             return services;
         }
 
@@ -27,6 +28,7 @@ namespace HelloWorld.API.Extensions
             services.AddScoped<ICollectionRepository, CollectionRepository>();
             services.AddScoped<ICollectionThemeRepository, CollectionThemeRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IWordRepository, WordRepository>();
             return services;
         }
     }

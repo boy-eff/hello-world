@@ -14,7 +14,7 @@
           <div class="d-flex">
               <p class="w-75">{{item.description === "" ? "This collection doesn't have description" : item.description}}</p>
               <div class="d-flex flex-column align-items-center w-25">
-                  <button class="btn btn-primary w-50">Edit</button>
+                  <button class="btn btn-primary w-50" [routerLink]="['/collections', item.id]">Edit</button>
                   <button class="btn btn-primary mt-2 w-50">Publish</button>
               </div>
           </div>
