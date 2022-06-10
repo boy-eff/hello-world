@@ -32,6 +32,7 @@ import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { UsersListComponent } from './users/users-list/users-list.component';
 import { UsersCardComponent } from './users/users-card/users-card.component';
+import { UsersInfoComponent } from './users/users-info/users-info.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { UsersCardComponent } from './users/users-card/users-card.component';
     AddCollectionDialogComponent,
     UsersListComponent,
     UsersCardComponent,
+    UsersInfoComponent,
   ],
   imports: [
     BrowserModule,
