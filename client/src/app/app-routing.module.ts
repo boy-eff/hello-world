@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CollectionCreateComponent } from './collections/collection-create/collection-create.component';
 import { CollectionEditComponent } from './collections/collection-edit/collection-edit.component';
+import { CollectionTrainComponent } from './collections/collection-train/collection-train.component';
 import { CollectionsComponent } from './collections/collections.component';
 import { LoginComponent } from './login/login.component';
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
@@ -14,7 +15,8 @@ const routes: Routes = [
   {path: 'collections', component: CollectionsComponent},
   {path: 'collections/:id', component: CollectionEditComponent},
   {path: 'account/edit', component: MemberEditComponent},
-  {path: 'users', component: UsersListComponent}
+  {path: 'users', component: UsersListComponent},
+  {path: 'collections/:id/train', component: CollectionTrainComponent}
 ];
 
 @NgModule({

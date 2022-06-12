@@ -33,6 +33,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CollectionEditComponent } from './collections/collection-edit/collection-edit.component';
 import { UsersListComponent } from './users/users-list/users-list.component';
 import { UsersCardComponent } from './users/users-card/users-card.component';
+import { CollectionTrainComponent } from './collections/collection-train/collection-train.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { UsersCardComponent } from './users/users-card/users-card.component';
     CollectionEditComponent,
     UsersListComponent,
     UsersCardComponent,
+    CollectionTrainComponent,
   ],
   imports: [
     BrowserModule,
