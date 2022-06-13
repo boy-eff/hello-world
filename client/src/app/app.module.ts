@@ -34,6 +34,7 @@ import { CollectionEditComponent } from './collections/collection-edit/collectio
 import { UsersListComponent } from './users/users-list/users-list.component';
 import { UsersCardComponent } from './users/users-card/users-card.component';
 import { CollectionTrainComponent } from './collections/collection-train/collection-train.component';
+import { CollectionChooseTranslationComponent } from './collections/collection-choose-translation/collection-choose-translation.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { CollectionTrainComponent } from './collections/collection-train/collect
     UsersListComponent,
     UsersCardComponent,
     CollectionTrainComponent,
+    CollectionChooseTranslationComponent,
   ],
   imports: [
     BrowserModule,
