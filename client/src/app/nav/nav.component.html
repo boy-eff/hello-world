@@ -18,8 +18,8 @@
       </div>
 
       <div *ngIf="(accountService.currentUser$ | async) === null">
-        <button type="button" class="btn btn-primary" routerLink="/login">Sign In</button>
-        <button type="button" class="btn btn-secondary" routerLink="/register">Sign Up</button>
+        <button type="button" class="btn btn-primary" routerLink="account/login">Sign In</button>
+        <button type="button" class="btn btn-secondary" routerLink="account/register">Sign Up</button>
       </div>
       <ng-container *ngIf="(accountService.currentUser$ | async) as user">
         <div class="btn-group" dropdown>
@@ -29,7 +29,7 @@
           </button>
           <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
               role="menu" aria-labelledby="button-basic">
-            <li role="menuitem"><button class="dropdown-item" routerLink="members/edit">Edit profile</button></li>
+            <li role="menuitem"><button class="dropdown-item" routerLink="account/edit">Edit profile</button></li>
             <li role="menuitem"><button class="dropdown-item" (click)="logout()">Log Out</button>
             </li>
           </ul>

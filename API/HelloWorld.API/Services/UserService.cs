@@ -4,7 +4,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
-using HelloWorld.API.DTO;
+using HelloWorld.Shared.DTO;
 using HelloWorld.API.Interfaces;
 using HelloWorld.Domain.Entities;
 using HelloWorld.Infrastructure.Interfaces;
@@ -31,9 +31,14 @@ namespace HelloWorld.API.Services
             _userRepository = userRepository;
         }
 
+        public async Task<AppUser> GetCurrentUser()
+        {
+            return await _userManager.GetUserAsync(_accessor.HttpContext.User);
+        }
+
         public async Task AddPhoto(IFormFile file)
         {
-            var user = await _userRepository.GetUserByUsername(_accessor.HttpContext.User.Identity.Name);
+            var user = await GetCurrentUser();
             var result = await _photoService.AddPhotoAsync(file);
             if (result.Error != null) return;
             var photo = new Photo()

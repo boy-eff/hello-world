@@ -4,9 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using HelloWorld.Domain.Entities;
 
-namespace HelloWorld.API.DTO
+namespace HelloWorld.Shared.DTO
 {
-    public class CreateCollectionDto
+    public class CollectionCreateDto
     {
         public string Name { get; set; }
         public int ThemeId { get; set; }

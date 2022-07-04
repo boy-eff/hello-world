@@ -16,6 +16,8 @@ namespace HelloWorld.Infrastructure.Data.Configurations
                 .HasOne(w => w.WordCollection)
                 .WithMany(wc => wc.Words)
                 .HasForeignKey(w => w.WordCollectionId);
+
+            builder.HasQueryFilter(w => !w.IsDeleted);
         }
     }
 }

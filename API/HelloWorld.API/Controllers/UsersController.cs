@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using HelloWorld.Infrastructure.Interfaces;
 using HelloWorld.API.Interfaces;
-using HelloWorld.API.DTO;
+using HelloWorld.Shared.DTO;
 
 namespace HelloWorld.API.Controllers
 {
