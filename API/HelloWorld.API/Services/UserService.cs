@@ -4,7 +4,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
-using HelloWorld.API.DTO;
+using HelloWorld.Shared.DTO;
 using HelloWorld.API.Interfaces;
 using HelloWorld.Domain.Entities;
 using HelloWorld.Infrastructure.Interfaces;

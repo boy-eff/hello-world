@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using HelloWorld.API.DTO;
+using HelloWorld.Shared.DTO;
 
 namespace HelloWorld.API.Interfaces
 {

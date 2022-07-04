@@ -1,4 +1,4 @@
-using HelloWorld.API.DTO;
+using HelloWorld.Shared.DTO;
 using HelloWorld.Domain.Entities;
 using HelloWorld.API.Interfaces;
 using Microsoft.AspNetCore.Identity;

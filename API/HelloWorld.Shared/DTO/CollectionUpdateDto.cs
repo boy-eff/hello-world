@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HelloWorld.API.DTO
+namespace HelloWorld.Shared.DTO
 {
     public class CollectionUpdateDto
     {

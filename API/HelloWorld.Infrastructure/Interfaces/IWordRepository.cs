@@ -8,9 +8,10 @@ namespace HelloWorld.Infrastructure.Interfaces
 {
     public interface IWordRepository
     {
-        Task AddWordAsync(Word word);
+        Task AddWordWithoutSavingAsync(Word word);
         Word GetWordById(int wordId);
+        IEnumerable<Word> GetWordsByIdsWithoutSaving(IEnumerable<int> ids);
         Task<IEnumerable<Word>> GetWordsByCollection(int collectionId);
-        Task DeleteWordAsync(int wordId);
+        Task DeleteWordWithoutSavingAsync(int wordId);
     }
 }

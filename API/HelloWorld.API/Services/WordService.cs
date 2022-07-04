@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using HelloWorld.API.DTO;
+using HelloWorld.Shared.DTO;
 using HelloWorld.API.Interfaces;
 using HelloWorld.Domain.Entities;
 using HelloWorld.Infrastructure.Interfaces;
@@ -23,12 +23,12 @@ namespace HelloWorld.API.Services
         public async Task AddWordAsync(WordDto wordDto)
         {
             var word = _mapper.Map<Word>(wordDto);
-            await _wordRepository.AddWordAsync(word);
+            await _wordRepository.AddWordWithoutSavingAsync(word);
         }
 
-        public async Task DeleteWordAsync(int wordId)
+        public async Task DeleteWordWithoutSavingAsync(int wordId)
         {
-            await _wordRepository.DeleteWordAsync(wordId);
+            await _wordRepository.DeleteWordWithoutSavingAsync(wordId);
         }
 
         public Word GetWordById(int wordId)
@@ -41,6 +41,11 @@ namespace HelloWorld.API.Services
             var words = _mapper.Map<IEnumerable<Word>,
                 IEnumerable<WordDto>>(await _wordRepository.GetWordsByCollection(collectionId));
             return words;
+        }
+
+        public IEnumerable<Word> GetWordsByIdsWithoutSaving(IEnumerable<int> ids)
+        {
+            return _wordRepository.GetWordsByIdsWithoutSaving(ids);
         }
     }
 }

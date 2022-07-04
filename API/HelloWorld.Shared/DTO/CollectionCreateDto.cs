@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using HelloWorld.Domain.Entities;
 
-namespace HelloWorld.API.DTO
+namespace HelloWorld.Shared.DTO
 {
     public class CollectionCreateDto
     {

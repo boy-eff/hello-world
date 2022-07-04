@@ -27,7 +27,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../HelloWorld.Infrastructure/HelloWorld.Infrastructure.csproj" />  </ItemGroup>
+    <ProjectReference Include="../HelloWorld.Infrastructure/HelloWorld.Infrastructure.csproj" />
+    <ProjectReference Include="../HelloWorld.Shared/HelloWorld.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+  </ItemGroup>
 
   <ItemGroup>
     <None Remove="..\.dockerignore" />

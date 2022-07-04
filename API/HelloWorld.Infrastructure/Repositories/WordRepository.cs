@@ -17,17 +17,15 @@ namespace HelloWorld.Infrastructure.Repositories
             _context = context;
         }
 
-        public async Task AddWordAsync(Word word)
+        public async Task AddWordWithoutSavingAsync(Word word)
         {
             await _context.Words.AddAsync(word);
-            await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteWordAsync(int wordId)
+        public async Task DeleteWordWithoutSavingAsync(int wordId)
         {
             var word = await _context.Words.FirstOrDefaultAsync(w => w.Id == wordId);
             word.IsDeleted = true;
-            await _context.SaveChangesAsync();
         }
 
         public Word GetWordById(int wordId)
@@ -38,6 +36,11 @@ namespace HelloWorld.Infrastructure.Repositories
         public async Task<IEnumerable<Word>> GetWordsByCollection(int collectionId)
         {
             return await _context.Words.Where(word => word.WordCollectionId == collectionId).ToListAsync();
+        }
+
+        public IEnumerable<Word> GetWordsByIdsWithoutSaving(IEnumerable<int> ids)
+        {
+            return _context.Words.Where(word => ids.Contains(word.Id));
         }
     }
 }
