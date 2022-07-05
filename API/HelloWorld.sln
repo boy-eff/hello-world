@@ -13,6 +13,8 @@ Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloWorld.Shared", "HelloWorld.Shared\HelloWorld.Shared.csproj", "{78947A2D-C125-4D8B-BB9E-F06793B6F2DD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloWorld.Tests", "HelloWorld.Tests\HelloWorld.Tests.csproj", "{8F1A1B95-7AF1-4455-8D32-117FC86F442C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{78947A2D-C125-4D8B-BB9E-F06793B6F2DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78947A2D-C125-4D8B-BB9E-F06793B6F2DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78947A2D-C125-4D8B-BB9E-F06793B6F2DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F1A1B95-7AF1-4455-8D32-117FC86F442C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F1A1B95-7AF1-4455-8D32-117FC86F442C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F1A1B95-7AF1-4455-8D32-117FC86F442C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F1A1B95-7AF1-4455-8D32-117FC86F442C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
