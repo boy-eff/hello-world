@@ -6,6 +6,7 @@ using HelloWorld.API.Services;
 using HelloWorld.Domain.Entities;
 using HelloWorld.Infrastructure.Interfaces;
 using HelloWorld.Shared.DTO;
+using HelloWorld.Tests.Builders;
 using HelloWorld.Tests.Fakes;
 using Microsoft.AspNetCore.Identity;
 using Moq;
@@ -32,23 +33,20 @@ public class AccountServiceTests
     [Fact]
     public async Task Login_ShouldReturnTokenIfCredentialsAreValid()
     {
-        var username = "username";
         var password = "password";
-        var id = 1;
         var token = "token";
-        var appUser = new AppUser()
-        {
-            Id = id,
-            UserName = "username"
-        };
 
-        _userRepoMock.Setup(x => x.GetUserByUsername(username))
+        var appUser = UserBuilder.Default()
+            .Simple()
+            .Build();
+
+        _userRepoMock.Setup(x => x.GetUserByUsername(appUser.UserName))
             .ReturnsAsync(appUser);
         _tokenServiceMock.Setup(x => x.CreateToken(appUser))
             .Returns(token);
         _signInManagerMock.Setup(x => x.CheckPasswordSignInAsync(appUser, password, false))
             .ReturnsAsync(SignInResult.Success);
-        var result = await _sut.Login(username, password);
+        var result = await _sut.Login(appUser.UserName, password);
 
         Assert.Equal(token, result.Token);
     }
@@ -68,44 +66,37 @@ public class AccountServiceTests
      [Fact]
     public async Task Login_ShouldThrow_InvalidCredentialsException_IfPasswordIsInvalid()
     {
-        var username = "username";
         var password = "password";
-        var id = 1;
-        var appUser = new AppUser()
-        {
-            Id = id,
-            UserName = "username"
-        };
+        
+        var appUser = UserBuilder.Default()
+            .Simple()
+            .Build();
 
-        _userRepoMock.Setup(x => x.GetUserByUsername(username))
+        _userRepoMock.Setup(x => x.GetUserByUsername(appUser.UserName))
             .ReturnsAsync(appUser);
         _signInManagerMock.Setup(x => x.CheckPasswordSignInAsync(appUser, It.IsAny<string>(), false))
             .ReturnsAsync(SignInResult.NotAllowed);
 
-        await Assert.ThrowsAsync<InvalidCredentialsException>(() => _sut.Login(username, password));
+        await Assert.ThrowsAsync<InvalidCredentialsException>(() => _sut.Login(appUser.UserName, password));
     }
 
     //Example of behaviour verification test
     [Fact]
     public async Task Login_ShouldCreateTokenOnce()
     {
-        var username = "username";
         var password = "password";
-        var id = 1;
         var token = "token";
-        var appUser = new AppUser()
-        {
-            Id = id,
-            UserName = "username"
-        };
+        var appUser = UserBuilder.Default()
+            .Simple()
+            .Build();
 
-        _userRepoMock.Setup(x => x.GetUserByUsername(username))
+        _userRepoMock.Setup(x => x.GetUserByUsername(appUser.UserName))
             .ReturnsAsync(appUser);
         _tokenServiceMock.Setup(x => x.CreateToken(appUser))
             .Returns(token);
         _signInManagerMock.Setup(x => x.CheckPasswordSignInAsync(appUser, password, false))
             .ReturnsAsync(SignInResult.Success);
-        var result = await _sut.Login(username, password);
+        var result = await _sut.Login(appUser.UserName, password);
 
         _tokenServiceMock.Verify(x => x.CreateToken(appUser), Times.Once);
     }
@@ -118,10 +109,11 @@ public class AccountServiceTests
             UserName = "username",
             Password = "password"
         };
-        var appUser = new AppUser()
-        {
-            UserName = "username"
-        };
+        
+        var appUser = UserBuilder.Default()
+            .Simple()
+            .Build();
+            
         _mapperMock.Setup(x => x.Map<AppUser>(registerDto))
             .Returns(appUser);
         _userServiceMock.Setup(x => x.CreateUserAsync(appUser, registerDto.Password))
