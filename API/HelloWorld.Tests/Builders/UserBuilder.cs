@@ -6,7 +6,7 @@ using HelloWorld.Domain.Entities;
 
 namespace HelloWorld.Tests.Builders
 {
-    public class UserBuilder
+    public class UserBuilder : BaseBuilder<AppUser>
     {
         private int _id;
         private string? _name;
@@ -59,7 +59,7 @@ namespace HelloWorld.Tests.Builders
             return this;
         }
 
-        public AppUser Build()
+        public override AppUser Build()
         {
             return new AppUser()
             {
