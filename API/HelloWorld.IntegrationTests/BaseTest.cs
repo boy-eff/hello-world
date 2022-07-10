@@ -23,16 +23,7 @@ namespace HelloWorld.IntegrationTests
 
         public BaseTest()
         {
-            _factory = new WebApplicationFactory<Program>()
-                .WithWebHostBuilder(builder => {
-                    builder.ConfigureServices(services => {
-                        services.RemoveAll(typeof(DataContext));
-                        services.AddDbContext<DataContext>(options => {
-                            
-                            options.UseInMemoryDatabase("TestDb");
-                        });
-                    });
-                });
+            _factory = new WebApplicationFactory<Program>();
             _client = _factory.CreateClient();
         }
 

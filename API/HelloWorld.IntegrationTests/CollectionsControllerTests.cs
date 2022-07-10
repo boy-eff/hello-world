@@ -5,6 +5,8 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using HelloWorld.Shared.DTO;
 using Xunit;
+using FluentAssertions;
+using System.Net;
 
 namespace HelloWorld.IntegrationTests
 {
@@ -24,9 +26,10 @@ namespace HelloWorld.IntegrationTests
             await AuthenticateAsync();
 
             var response = await _client.GetAsync(_baseUrlWithSlash);
-            string text = await response.Content.ReadAsStringAsync();
             
-            response.EnsureSuccessStatusCode();
+            response.Should().BeSuccessful();
+            (await response.Content.ReadAsAsync<List<CollectionDto>>()).Should().NotBeNull();
+
         }
 
         [Fact]
@@ -37,9 +40,10 @@ namespace HelloWorld.IntegrationTests
             await CreateCollectionAsync(_baseUrlWithSlash,
                 new CollectionCreateDto() { Name = "collection", ThemeId = 1 });
 
-            var response = await _client.GetAsync(_baseUrlWithSlash);
+            var response = await _client.GetAsync(_baseUrlWithSlash + "1");
 
-            response.EnsureSuccessStatusCode();
+            response.Should().HaveStatusCode(HttpStatusCode.OK);
+            (await response.Content.ReadAsAsync<CollectionDto>()).Should().NotBeNull();
         }
     }
 }
