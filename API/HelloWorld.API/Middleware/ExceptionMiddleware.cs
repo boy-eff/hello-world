@@ -34,6 +34,12 @@ namespace HelloWorld.API.Middleware
                 context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
                 await context.Response.WriteAsync("Invalid credentials");
             }
+            catch(CloudinaryServerException)
+            {
+                context.Response.ContentType = "application/json";
+                context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                await context.Response.WriteAsync("Cloudinary server error");
+            }
         }
     }
 }

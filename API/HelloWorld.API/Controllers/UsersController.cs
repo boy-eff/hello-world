@@ -16,28 +16,40 @@ namespace HelloWorld.API.Controllers
     [Authorize]
     public class UsersController : BaseApiController
     {
-        private readonly DataContext _context;
         private readonly IUserService _userService;
         private readonly IPhotoService _photoService;
-        public UsersController(DataContext context, IUserService userService, IPhotoService photoService)
+        public UsersController(IUserService userService, IPhotoService photoService)
         {
             _photoService = photoService;
             _userService = userService;
-            _context = context;
         }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<UserInfoDto>>> GetUsers()
         {
             var users = await _userService.GetUsersAsync();
-            return Ok(users);
+            if (users.Count() > 0)
+            {
+                return Ok(users);
+            }
+            else
+            {
+                return NoContent();
+            }
         }
 
         [HttpGet("{username}")]
         public async Task<ActionResult<UserInfoDto>> GetUserByUsername(string username)
         {
             var user = await _userService.GetUserByUsernameAsync(username);
-            return Ok(user);
+            if (user != null)
+            {
+                return Ok(user);
+            }
+            else 
+            {
+                return NoContent();
+            }
         }
 
         [HttpPost("photo")]

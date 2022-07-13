@@ -37,7 +37,7 @@ namespace HelloWorld.API.Services
                 throw new InvalidCredentialsException();
             }
             var passwordCheck = await _signInManager.CheckPasswordSignInAsync(user, password, false);
-            if (!passwordCheck.Succeeded)
+            if (passwordCheck.IsNotAllowed)
             {
                 throw new InvalidCredentialsException();
             }
