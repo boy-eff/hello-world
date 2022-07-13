@@ -32,6 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
+     <InternalsVisibleTo Include="HelloWorld.IntegrationTests" />
   </ItemGroup>
 
   <ItemGroup>
