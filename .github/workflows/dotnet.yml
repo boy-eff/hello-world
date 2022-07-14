@@ -18,8 +18,8 @@ jobs:
       with:
         dotnet-version: 6.0.x
     - name: Restore dependencies
-      run: dotnet restore /API
-    - name: Build
-      run: dotnet build /API --no-restore
+      working-directory: ./API
+      run: dotnet restore
     - name: Test
-      run: dotnet test /API --no-build --verbosity normal
+      working-directory: ./API/HelloWorld.Tests/
+      run: dotnet test
