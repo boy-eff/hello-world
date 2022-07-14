@@ -12,7 +12,7 @@ services:
       - "helloworld-postgres"
     build: 
       context: .
-      dockerfile: HelloWorld.API/Dockerfile
+      dockerfile: Dockerfile
     networks:
       - privnet
 
@@ -30,7 +30,7 @@ services:
       - helloworld-postgres
     build: 
       context: .
-      dockerfile: HelloWorld.API/Dockerfile
+      dockerfile: Dockerfile
       target: integrationtestrunner
     networks:
       - privnet
