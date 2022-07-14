@@ -15,4 +15,4 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file API/HelloWorld.API/Dockerfile --tag my-image-name:$(date +%s) --target testrunner
+      run: docker build . --file API/Dockerfile --tag my-image-name:$(date +%s) --target testrunner
