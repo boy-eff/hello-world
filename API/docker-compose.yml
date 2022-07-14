@@ -1,5 +1,6 @@
 version: '3.4'
 
+
 networks:
   privnet:
     driver: bridge
@@ -16,11 +17,23 @@ services:
       - privnet
 
   helloworld-postgres:
-    container_name: helloworld-postgres
+    container_name: helloworld_postgres
     image: postgres:latest
     command: postgres -c log_statement=all
     restart: always
     networks:
       - privnet
+
+  integration-tests:
+    container_name: testing_api
+    depends_on:
+      - helloworld-postgres
+    build: 
+      context: .
+      dockerfile: HelloWorld.API/Dockerfile
+      target: integrationtestrunner
+    networks:
+      - privnet
+
 
       
