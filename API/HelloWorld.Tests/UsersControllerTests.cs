@@ -62,7 +62,7 @@ namespace HelloWorld.Tests
             var user = new UserInfoDto() {Id = 1, Username = "danila"};
 
             _mocker.GetMock<IUserService>().Setup(x => x.GetUserByUsernameAsync(user.Username))
-                .ReturnsAsync((UserInfoDto)null);
+                .ReturnsAsync(user);
 
             var result = await _sut.GetUserByUsername(user.Username);
 
