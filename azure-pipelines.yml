@@ -5,9 +5,6 @@
 
 trigger:
 - main
-name: Build and Test .NET application in Azure
-
-pool: Default
 
 variables:
   solution: '**/*.sln'
@@ -15,18 +12,21 @@ variables:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
-steps:
-- task: NuGetToolInstaller@1
+jobs:
+- job: Build-and-test-DotNet-application-in-Azure
+  displayName: Build and test .NET application in Azure
+  steps:
+  - task: NuGetToolInstaller@1
 
-- task: NuGetCommand@2
-  inputs:
-    command: restore
-    restoreSolution: '$(solution)'
+  - task: NuGetCommand@2
+    inputs:
+      command: restore
+      restoreSolution: '$(solution)'
 
-- task: DotNetCoreCLI@2
-  name: 'Tests'
-  displayName: 'Run tests'
-  inputs:
-    command: 'test'
-    projects: '$(tests)'
-    arguments: '--configuration $(BuildConfiguration)'
+  - task: DotNetCoreCLI@2
+    name: 'Tests'
+    displayName: 'Run tests'
+    inputs:
+      command: 'test'
+      projects: '$(tests)'
+      arguments: '--configuration $(BuildConfiguration)'
