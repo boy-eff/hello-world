@@ -19,7 +19,7 @@ jobs:
         dotnet-version: 6.0.x
     - name: Restore dependencies
       working-directory: ./API
-      run: dotnet restore
+      run: dotnet restore HelloWorld.sln
     - name: Test
       working-directory: ./API/HelloWorld.Tests/
       run: dotnet test
