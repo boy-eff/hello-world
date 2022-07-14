@@ -8,6 +8,7 @@ on:
 
 jobs:
   build:
+    name: Build and Test .NET application
 
     runs-on: ubuntu-latest
 
