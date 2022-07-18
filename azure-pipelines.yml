@@ -13,7 +13,7 @@ variables:
   buildConfiguration: 'Release'
 
 jobs:
-- job: Build-and-test-DotNet-application-in-Azure
+- job: Build_and_test_DotNet_application_in_Azure
   displayName: Build and test .NET application in Azure
   steps:
   - task: NuGetToolInstaller@1
