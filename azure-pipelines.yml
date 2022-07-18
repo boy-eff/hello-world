@@ -14,6 +14,8 @@ variables:
 
 jobs:
 - job: Build_and_test_DotNet_application_in_Azure
+  pool:
+    name: Default
   displayName: Build and test .NET application in Azure
   steps:
   - task: NuGetToolInstaller@1
