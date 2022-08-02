@@ -1,10 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using HelloWorld.API.Interfaces;
 using HelloWorld.API.Services;
-using HelloWorld.Infrastructure.Interfaces;
+using HelloWorld.Application.Interfaces;
 using HelloWorld.Infrastructure.Repositories;
 
 namespace HelloWorld.API.Extensions

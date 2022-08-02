@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HelloWorld.API.Exceptions
+namespace HelloWorld.Domain.Exceptions
 {
     public class CloudinaryServerException : Exception
     {

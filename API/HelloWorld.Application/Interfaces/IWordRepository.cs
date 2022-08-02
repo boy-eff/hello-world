@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using HelloWorld.Domain.Entities;
 
-namespace HelloWorld.Infrastructure.Interfaces
+namespace HelloWorld.Application.Interfaces
 {
     public interface IWordRepository
     {

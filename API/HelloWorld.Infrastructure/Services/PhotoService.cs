@@ -1,11 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
-using HelloWorld.API.Helpers;
-using HelloWorld.API.Interfaces;
+using HelloWorld.Application.Helpers;
+using HelloWorld.Application.Interfaces;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 
 namespace HelloWorld.API.Services

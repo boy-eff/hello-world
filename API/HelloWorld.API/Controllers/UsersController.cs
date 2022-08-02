@@ -1,15 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using HelloWorld.Infrastructure.Data;
-using HelloWorld.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using HelloWorld.Infrastructure.Interfaces;
-using HelloWorld.API.Interfaces;
 using HelloWorld.Shared.DTO;
+using HelloWorld.Application.Interfaces;
 
 namespace HelloWorld.API.Controllers
 {

@@ -1,14 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using CloudinaryDotNet.Actions;
+using Microsoft.AspNetCore.Http;
 
-namespace HelloWorld.API.Interfaces
+namespace HelloWorld.Application.Interfaces
 {
     public interface IPhotoService
     {
         Task<ImageUploadResult> AddPhotoAsync(IFormFile file);
-        
     }
 }

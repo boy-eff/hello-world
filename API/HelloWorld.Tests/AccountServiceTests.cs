@@ -1,10 +1,9 @@
 using System.Threading.Tasks;
 using AutoMapper;
-using HelloWorld.API.Exceptions;
-using HelloWorld.API.Interfaces;
 using HelloWorld.API.Services;
+using HelloWorld.Application.Interfaces;
 using HelloWorld.Domain.Entities;
-using HelloWorld.Infrastructure.Interfaces;
+using HelloWorld.Domain.Exceptions;
 using HelloWorld.Shared.DTO;
 using HelloWorld.Tests.Builders;
 using HelloWorld.Tests.Fakes;

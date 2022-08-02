@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using HelloWorld.Shared.DTO;
 using Microsoft.AspNetCore.Identity;
 
-namespace HelloWorld.API.Interfaces
+namespace HelloWorld.Application.Interfaces
 {
     public interface IAccountService
     {

@@ -1,15 +1,14 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using HelloWorld.API.Controllers;
-using HelloWorld.API.Interfaces;
 using Moq.AutoMock;
 using Xunit;
 using FluentAssertions;
 using Moq;
 using HelloWorld.Shared.DTO;
 using Microsoft.AspNetCore.Mvc;
+using HelloWorld.Application.Interfaces;
+
 namespace HelloWorld.Tests
 {
     public class UsersControllerTests

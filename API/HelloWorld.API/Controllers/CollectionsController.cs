@@ -1,9 +1,8 @@
 using HelloWorld.Shared.DTO;
 using HelloWorld.Domain.Entities;
-using HelloWorld.API.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using HelloWorld.API.Services;
+using HelloWorld.Application.Interfaces;
 
 namespace HelloWorld.API.Controllers
 {

@@ -9,6 +9,7 @@ COPY ["HelloWorld.Infrastructure/HelloWorld.Infrastructure.csproj", "HelloWorld.
 COPY ["HelloWorld.Shared/HelloWorld.Shared.csproj", "HelloWorld.Shared/"]
 COPY ["HelloWorld.IntegrationTests/HelloWorld.IntegrationTests.csproj", "HelloWorld.IntegrationTests/"]
 COPY ["HelloWorld.Tests/HelloWorld.Tests.csproj", "HelloWorld.Tests/"]
+COPY ["HelloWorld.Application/HelloWorld.Application.csproj", "HelloWorld.Application/"]
 COPY *.dcproj .
 RUN dotnet restore HelloWorld.sln
 

@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using HelloWorld.Domain.Entities;
 using HelloWorld.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -18,7 +14,7 @@ namespace HelloWorld.API.Extensions
 
             dbContext.Database.Migrate();
 
-            dbContext.WordCollectionThemes.Add(new Domain.Entities.WordCollectionTheme{Id = 0, Name = "Animals"});
+            dbContext.WordCollectionThemes.Add(new WordCollectionTheme{Id = 0, Name = "Animals"});
             dbContext.SaveChanges();
         }
     }

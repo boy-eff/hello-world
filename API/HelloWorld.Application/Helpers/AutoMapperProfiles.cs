@@ -6,7 +6,7 @@ using HelloWorld.Shared.DTO;
 using HelloWorld.Domain.Entities;
 using AutoMapper;
 
-namespace HelloWorld.API.Helpers
+namespace HelloWorld.Application.Helpers
 {
     public class AutoMapperProfiles : Profile
     {

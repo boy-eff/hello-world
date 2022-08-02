@@ -4,7 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
 
-namespace HelloWorld.API.Exceptions
+namespace HelloWorld.Domain.Exceptions
 {
     [Serializable]
     public class UserExistsException : Exception

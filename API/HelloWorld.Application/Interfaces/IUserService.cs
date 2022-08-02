@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 using HelloWorld.Shared.DTO;
 using HelloWorld.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Http;
 
-namespace HelloWorld.API.Interfaces
+namespace HelloWorld.Application.Interfaces
 {
     public interface IUserService
     {

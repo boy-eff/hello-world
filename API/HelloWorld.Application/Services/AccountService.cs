@@ -1,14 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
-using HelloWorld.Shared.DTO;
-using HelloWorld.API.Exceptions;
-using HelloWorld.API.Interfaces;
 using HelloWorld.Domain.Entities;
-using HelloWorld.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Identity;
+using HelloWorld.Application.Interfaces;
+using HelloWorld.Shared.DTO;
+using HelloWorld.Domain.Exceptions;
+using AutoMapper;
 
 namespace HelloWorld.API.Services
 {
