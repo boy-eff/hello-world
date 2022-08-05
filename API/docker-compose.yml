@@ -25,6 +25,7 @@ services:
       - privnet
 
   integration-tests:
+    profiles: ["tests"]
     container_name: testing_api
     depends_on:
       - helloworld-postgres

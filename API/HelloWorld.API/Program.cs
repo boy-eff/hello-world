@@ -1,7 +1,10 @@
+using System.Reflection;
 using HelloWorld.API.Extensions;
 using HelloWorld.API.Middleware;
 using HelloWorld.Application.Helpers;
 using HelloWorld.Infrastructure.Data;
+using HelloWorld.Application.Extensions;
+using MediatR;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +21,7 @@ builder.Services.AddRepositories();
 builder.Services.AddServices();
 
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
+builder.Services.AddMediatR(Assembly.GetExecutingAssembly().GetApplicationAssembly());
 
 builder.Services.AddIdentityServices(builder.Configuration);
 

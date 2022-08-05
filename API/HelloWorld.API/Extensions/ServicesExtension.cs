@@ -10,11 +10,7 @@ namespace HelloWorld.API.Extensions
         {
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IAccountService, AccountService>();
-            services.AddScoped<ICollectionService, CollectionService>();
-            services.AddScoped<ICollectionThemeService, CollectionThemeService>();
             services.AddScoped<IPhotoService, PhotoService>();
-            services.AddScoped<IWordService, WordService>();
             return services;
         }
 

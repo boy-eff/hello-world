@@ -16,6 +16,7 @@ namespace HelloWorld.Application.Helpers
                 .ForMember(u => u.UserName, u => u.MapFrom(r => r.UserName.ToLower()));
             CreateMap<CollectionCreateDto, WordCollection>()
                 .ForMember(wc => wc.WordCollectionThemeId, wc => wc.MapFrom(cc => cc.ThemeId));
+            CreateMap<WordCollection, CollectionDto>();
             CreateMap<Word, WordDto>().ReverseMap();
             CreateMap<WordCreateDto, Word>();
             CreateMap<WordCollection, CollectionDto>()

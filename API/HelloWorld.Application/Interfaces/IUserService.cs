@@ -13,10 +13,5 @@ namespace HelloWorld.Application.Interfaces
     public interface IUserService
     {
         Task<AppUser> GetCurrentUser();
-        Task<IdentityResult> CreateUserAsync(AppUser user, string password);
-        Task<IEnumerable<UserInfoDto>> GetUsersAsync();
-        Task<bool> UserExistsAsync(string username);
-        Task<UserInfoDto> GetUserByUsernameAsync(string username);
-        Task AddPhoto(IFormFile file);
     }
 }
