@@ -1,8 +1,5 @@
-using AutoMapper;
-using HelloWorld.Shared.DTO;
 using HelloWorld.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using HelloWorld.Application.Interfaces;
 using Microsoft.AspNetCore.Http;
 
