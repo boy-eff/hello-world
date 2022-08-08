@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using HelloWorld.Domain.Entities;
+using HelloWorld.Shared.DTO;
 
 namespace HelloWorld.Tests.Builders
 {
     public class UserBuilder : BaseBuilder<AppUser>
     {
         private int _id;
-        private string? _name;
-        private string? _userName;
-        private string? _description;
-        private string? _hash;
+        private string _name;
+        private string _userName;
+        private string _description;
+        private string _hash;
 
         public static UserBuilder Default()
         {
@@ -68,6 +69,24 @@ namespace HelloWorld.Tests.Builders
                 UserName = _userName,
                 Description = _description,
                 PasswordHash = _hash
+            };
+        }
+
+        public RegisterDto BuildAsRegisterDto()
+        {
+            return new RegisterDto()
+            {
+                UserName = _userName,
+                Password = _hash
+            };
+        }
+
+        public UserInfoDto BuildAsUserInfoDto()
+        {
+            return new UserInfoDto()
+            {
+                Username = _userName,
+                Description = _description
             };
         }
     }

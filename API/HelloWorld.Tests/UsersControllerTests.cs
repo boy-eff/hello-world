@@ -8,6 +8,9 @@ using Moq;
 using HelloWorld.Shared.DTO;
 using Microsoft.AspNetCore.Mvc;
 using HelloWorld.Application.Interfaces;
+using MediatR;
+using HelloWorld.Application.Features.Users.Queries;
+using System.Threading;
 
 namespace HelloWorld.Tests
 {
@@ -31,8 +34,9 @@ namespace HelloWorld.Tests
                 new UserInfoDto() {Id = 3, Username = "artem"},
             };
 
-            _mocker.GetMock<IUserService>().Setup(x => x.GetUsersAsync())
-                .ReturnsAsync(users);
+            _mocker.GetMock<IMediator>().Setup(
+                x => x.Send(It.IsAny<GetAllUsersQuery>(), CancellationToken.None)
+            ).ReturnsAsync(users);
 
             var result = await _sut.GetUsers();
 
@@ -45,12 +49,14 @@ namespace HelloWorld.Tests
         [Fact]
         public async Task GetUsers_ShouldReturn_NoContent_IfThereAreNoUsers()
         {
-            _mocker.GetMock<IUserService>().Setup(x => x.GetUsersAsync())
-                .ReturnsAsync(new List<UserInfoDto>());
+            _mocker.GetMock<IMediator>().Setup(
+                x => x.Send(It.IsAny<GetAllUsersQuery>(), CancellationToken.None)
+            ).ReturnsAsync(new List<UserInfoDto>());
             
             var result = await _sut.GetUsers();
 
-            result.Result.Should().BeOfType(typeof(NoContentResult));
+            result.Result.As<OkObjectResult>().Should().NotBeNull();
+            result.Result.As<OkObjectResult>().Value.As<IEnumerable<UserInfoDto>>().Should().BeEmpty();
         }
 
         [Fact]
@@ -58,8 +64,9 @@ namespace HelloWorld.Tests
         {  
             var user = new UserInfoDto() {Id = 1, Username = "danila"};
 
-            _mocker.GetMock<IUserService>().Setup(x => x.GetUserByUsernameAsync(user.Username))
-                .ReturnsAsync(user);
+            _mocker.GetMock<IMediator>().Setup(
+                x => x.Send(It.IsAny<GetUserByUsernameQuery>(), CancellationToken.None)
+            ).ReturnsAsync(user);
 
             var result = await _sut.GetUserByUsername(user.Username);
 
@@ -73,12 +80,14 @@ namespace HelloWorld.Tests
         public async Task GetUserByUsername_ShouldReturn_NoContent_IfUserDoesNotExist()
         {
             var username = "username";
-            _mocker.GetMock<IUserService>().Setup(x => x.GetUserByUsernameAsync(It.IsAny<string>()))
-                .ReturnsAsync((UserInfoDto)null);
+            _mocker.GetMock<IMediator>().Setup(
+                x => x.Send(It.IsAny<GetUserByUsernameQuery>(), CancellationToken.None)
+            ).ReturnsAsync((UserInfoDto)null);
             
             var result = await _sut.GetUserByUsername(username);
 
-            result.Result.Should().BeOfType(typeof(NoContentResult));
+            result.Result.As<OkObjectResult>().Should().NotBeNull();
+            result.Result.As<OkObjectResult>().Value.As<UserInfoDto>().Should().BeNull();
         }
     }
 }

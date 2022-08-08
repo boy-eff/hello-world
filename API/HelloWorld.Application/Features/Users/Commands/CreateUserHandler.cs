@@ -28,7 +28,7 @@ namespace HelloWorld.Application.Features.Users.Commands
             {
                 throw new UserExistsException();
             }
-            await _userManager.CreateAsync(user, request.RegisterDto.Password);
+            var result = await _userManager.CreateAsync(user, request.RegisterDto.Password);
             return _mapper.Map<UserInfoDto>(user);
         }
     }
