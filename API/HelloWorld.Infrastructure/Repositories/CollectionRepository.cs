@@ -1,10 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using HelloWorld.Infrastructure.Data;
+using HelloWorld.Application.Interfaces;
 using HelloWorld.Domain.Entities;
-using HelloWorld.Infrastructure.Interfaces;
+using HelloWorld.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace HelloWorld.Infrastructure.Repositories

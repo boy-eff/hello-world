@@ -1,15 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using HelloWorld.Infrastructure.Data;
-using HelloWorld.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using HelloWorld.Infrastructure.Interfaces;
-using HelloWorld.API.Interfaces;
 using HelloWorld.Shared.DTO;
+using HelloWorld.Application.Interfaces;
+using HelloWorld.Application.Features.Users.Queries;
+using MediatR;
+using HelloWorld.Application.Features.Users.Commands;
 
 namespace HelloWorld.API.Controllers
 {
@@ -18,44 +13,35 @@ namespace HelloWorld.API.Controllers
     {
         private readonly IUserService _userService;
         private readonly IPhotoService _photoService;
-        public UsersController(IUserService userService, IPhotoService photoService)
+        private readonly IMediator _mediator;
+        public UsersController(IUserService userService, IPhotoService photoService, IMediator mediator)
         {
             _photoService = photoService;
             _userService = userService;
+            _mediator = mediator;
         }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<UserInfoDto>>> GetUsers()
         {
-            var users = await _userService.GetUsersAsync();
-            if (users.Count() > 0)
-            {
-                return Ok(users);
-            }
-            else
-            {
-                return NoContent();
-            }
+            var query = new GetAllUsersQuery();
+            var result = await _mediator.Send(query);
+            return Ok(result);
         }
 
         [HttpGet("{username}")]
         public async Task<ActionResult<UserInfoDto>> GetUserByUsername(string username)
         {
-            var user = await _userService.GetUserByUsernameAsync(username);
-            if (user != null)
-            {
-                return Ok(user);
-            }
-            else 
-            {
-                return NoContent();
-            }
+            var query = new GetUserByUsernameQuery(username);
+            var result = await _mediator.Send(query);
+            return Ok(result);
         }
 
         [HttpPost("photo")]
         public async Task<ActionResult> AddPhoto(IFormFile file)
         {
-            await _userService.AddPhoto(file);
+            var command = new UpdateUserPhotoCommand(file);
+            var result = await _mediator.Send(command);
             return Ok();
         }
     }

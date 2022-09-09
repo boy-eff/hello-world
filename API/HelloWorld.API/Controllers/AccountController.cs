@@ -1,13 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using HelloWorld.Application.Features.Users.Commands;
+using HelloWorld.Application.Interfaces;
 using HelloWorld.Shared.DTO;
-using HelloWorld.API.Interfaces;
-using AutoMapper;
-using Microsoft.AspNetCore.Identity;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace HelloWorld.API.Controllers
 {
@@ -15,12 +10,12 @@ namespace HelloWorld.API.Controllers
     {
         private readonly ITokenService _tokenService;
         private readonly IUserService _userService;
-        private readonly IAccountService _accountService;
+        private readonly IMediator _mediator;
 
         public AccountController(IUserService userService,
-         ITokenService tokenService, IAccountService accountService)
+         ITokenService tokenService, IMediator mediator)
         {
-            _accountService = accountService;
+            _mediator = mediator;
             _userService = userService;
             _tokenService = tokenService;
         }
@@ -28,15 +23,17 @@ namespace HelloWorld.API.Controllers
         [HttpPost("register")]
         public async Task<ActionResult> Register(RegisterDto registerDto)
         {
-            var result = await _accountService.Register(registerDto);
-            if (!result.Succeeded) return BadRequest();
-            return Ok();
+            var command = new CreateUserCommand(registerDto);
+            var result = await _mediator.Send(command);
+            if (result == null) return BadRequest();
+            return Ok(result);
         }
 
         [HttpPost("login")]
         public async Task<ActionResult<UserAccessTokenDto>> Login(LoginDto loginDto)
         {
-            var result = await _accountService.Login(loginDto.UserName, loginDto.Password);
+            var command = new LogInUserCommand(loginDto.UserName, loginDto.Password);
+            var result = await _mediator.Send(command);
             return Ok(result);
         }
     }

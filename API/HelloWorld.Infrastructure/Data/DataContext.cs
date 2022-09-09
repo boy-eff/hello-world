@@ -1,13 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using HelloWorld.Domain.Entities;
 using Microsoft.Extensions.Configuration;
 using System.Reflection;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using HelloWorld.Domain.Entities;
 
 namespace HelloWorld.Infrastructure.Data
 {

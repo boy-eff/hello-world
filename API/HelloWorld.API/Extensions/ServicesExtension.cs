@@ -1,10 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using HelloWorld.API.Interfaces;
 using HelloWorld.API.Services;
-using HelloWorld.Infrastructure.Interfaces;
+using HelloWorld.Application.Interfaces;
 using HelloWorld.Infrastructure.Repositories;
 
 namespace HelloWorld.API.Extensions
@@ -15,11 +10,7 @@ namespace HelloWorld.API.Extensions
         {
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IAccountService, AccountService>();
-            services.AddScoped<ICollectionService, CollectionService>();
-            services.AddScoped<ICollectionThemeService, CollectionThemeService>();
             services.AddScoped<IPhotoService, PhotoService>();
-            services.AddScoped<IWordService, WordService>();
             return services;
         }
 

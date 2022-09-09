@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloWorld.Tests", "HelloWo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloWorld.IntegrationTests", "HelloWorld.IntegrationTests\HelloWorld.IntegrationTests.csproj", "{0B42F898-55CC-40AA-9D89-52FB5A884397}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloWorld.Application", "HelloWorld.Application\HelloWorld.Application.csproj", "{11BC3F3B-5957-4440-8856-72C392BC56F2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{0B42F898-55CC-40AA-9D89-52FB5A884397}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B42F898-55CC-40AA-9D89-52FB5A884397}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B42F898-55CC-40AA-9D89-52FB5A884397}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11BC3F3B-5957-4440-8856-72C392BC56F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11BC3F3B-5957-4440-8856-72C392BC56F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11BC3F3B-5957-4440-8856-72C392BC56F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11BC3F3B-5957-4440-8856-72C392BC56F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
