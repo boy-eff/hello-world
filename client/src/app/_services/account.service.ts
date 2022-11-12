@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map, ReplaySubject } from 'rxjs';
+import { BehaviorSubject, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { UserAccessToken } from '../_models/user-access-token';
 
@@ -15,7 +15,14 @@ export class AccountService {
 
   register(model: any)
   {
-    return this.http.post(this.baseUrl + "account/register", model);
+    return this.http.post<UserAccessToken>(this.baseUrl + "account/register", model).pipe(
+      map((response: UserAccessToken) => {
+        const user = response;
+        if (user) {
+          this.setCurrentUser(user);
+        }
+      })
+    );
   }
 
   login(model: any)

@@ -8,20 +8,15 @@ namespace HelloWorld.API.Controllers
 {
     public class AccountController : BaseApiController
     {
-        private readonly ITokenService _tokenService;
-        private readonly IUserService _userService;
         private readonly IMediator _mediator;
 
-        public AccountController(IUserService userService,
-         ITokenService tokenService, IMediator mediator)
+        public AccountController(IMediator mediator)
         {
             _mediator = mediator;
-            _userService = userService;
-            _tokenService = tokenService;
         }
 
         [HttpPost("register")]
-        public async Task<ActionResult> Register(RegisterDto registerDto)
+        public async Task<ActionResult<UserAccessTokenDto>> Register(RegisterDto registerDto)
         {
             var command = new CreateUserCommand(registerDto);
             var result = await _mediator.Send(command);

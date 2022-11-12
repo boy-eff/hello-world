@@ -3,7 +3,7 @@ using MediatR;
 
 namespace HelloWorld.Application.Features.Users.Commands
 {
-    public class CreateUserCommand : IRequest<UserInfoDto>
+    public class CreateUserCommand : IRequest<UserAccessTokenDto>
     {
         public CreateUserCommand(RegisterDto registerDto) 
         {
