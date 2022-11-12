@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AccountService } from '../_services/account.service';
 import { ValidatorsService } from '../_services/validators.service';
 
@@ -34,5 +34,4 @@ export class RegisterComponent implements OnInit {
   {
     this.accountService.register(this.registerForm.value).subscribe();
   }
-
 }
