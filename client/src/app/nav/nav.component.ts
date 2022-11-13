@@ -11,8 +11,7 @@ export class NavComponent implements OnInit {
 
   constructor(public accountService: AccountService, private router: Router) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   logout() {
     this.accountService.logout();

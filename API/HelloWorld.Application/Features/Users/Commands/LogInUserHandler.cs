@@ -29,7 +29,7 @@ namespace HelloWorld.Application.Features.Users.Commands
                 throw new InvalidCredentialsException();
             }
             var passwordCheck = await _signInManager.CheckPasswordSignInAsync(user, request.Password, false);
-            if (passwordCheck.IsNotAllowed)
+            if (!passwordCheck.Succeeded)
             {
                 throw new InvalidCredentialsException();
             }

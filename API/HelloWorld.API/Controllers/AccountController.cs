@@ -1,5 +1,6 @@
 using HelloWorld.Application.Features.Users.Commands;
 using HelloWorld.Application.Interfaces;
+using HelloWorld.Domain.Exceptions;
 using HelloWorld.Shared.DTO;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
