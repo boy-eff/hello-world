@@ -23,12 +23,12 @@ namespace HelloWorld.Tests.Commands
         private readonly CreateUserHandler _sut;
         private readonly Mock<FakeUserManager> _userManagerMock = new Mock<FakeUserManager>();
         private readonly Mock<IMapper> _mapperMock = new Mock<IMapper>();
-        private readonly Mock<IUserService> _userServiceMock = new Mock<IUserService>();
+        private readonly Mock<ITokenService> _tokenService = new Mock<ITokenService>();
 
         public CreateUserHandlerTests()
         {
             _sut = new CreateUserHandler(_mapperMock.Object,
-                _userManagerMock.Object, _userServiceMock.Object);
+                _userManagerMock.Object, _tokenService.Object);
         }
 
         [Fact]
@@ -45,6 +45,8 @@ namespace HelloWorld.Tests.Commands
             var appUser = UserBuilder.Default()
                 .Simple()
                 .Build();
+            
+            var token = "token";
                 
             _mapperMock.Setup(x => x.Map<AppUser>(registerDto))
                 .Returns(appUser);
@@ -57,10 +59,16 @@ namespace HelloWorld.Tests.Commands
             
             _userManagerMock.Setup(x => x.CreateAsync(appUser, registerDto.Password))
                 .ReturnsAsync(IdentityResult.Success);
+
+            _tokenService.Setup(x => x.CreateToken(appUser))
+                .Returns(token);
             
             var result = await _sut.Handle(new CreateUserCommand(registerDto), CancellationToken.None);
 
-            result.Should().BeEquivalentTo(userInfo);
+            result.Should().NotBeNull();
+            result.Id.Should().Be(userInfo.Id);
+            result.UserName.Should().Be(userInfo.Username);
+            result.Token.Should().Be(token);
         }
     
         [Fact]

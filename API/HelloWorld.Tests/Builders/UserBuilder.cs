@@ -85,6 +85,7 @@ namespace HelloWorld.Tests.Builders
         {
             return new UserInfoDto()
             {
+                Id = _id,
                 Username = _userName,
                 Description = _description
             };
