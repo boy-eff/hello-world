@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CollectionCreateComponent } from './collections/collection-create/collection-create.component';
 import { CollectionEditComponent } from './collections/collection-edit/collection-edit.component';
 import { CollectionsComponent } from './collections/collections.component';
-import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { RegisterComponent } from './register/register.component';

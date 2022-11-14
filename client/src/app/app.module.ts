@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { NgxSpinnerModule } from "ngx-spinner";
 import { NavComponent } from './nav/nav.component';
 import { RegisterComponent } from './register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -19,7 +20,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatListModule} from '@angular/material/list';
 import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 import {MatButtonModule} from '@angular/material/button';
-import {MatIcon, MatIconModule} from '@angular/material/icon';
+import {MatIconModule} from '@angular/material/icon';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatTabsModule} from '@angular/material/tabs';
 import { EditWordComponent } from './_dialogs/edit-word/edit-word.component';
@@ -35,6 +36,7 @@ import { CollectionEditComponent } from './collections/collection-edit/collectio
 import { UsersListComponent } from './users/users-list/users-list.component';
 import { UsersCardComponent } from './users/users-card/users-card.component';
 import { ErrorInterceptor } from './_interceptors/error.interceptor';
+import { LoadingInterceptor } from './_interceptors/loading.interceptor';
 
 @NgModule({
   declarations: [
@@ -76,8 +78,10 @@ import { ErrorInterceptor } from './_interceptors/error.interceptor';
     FontAwesomeModule,
     ToastrModule.forRoot({
       positionClass: "toast-bottom-right"
-    })
+    }),
+    NgxSpinnerModule
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
@@ -87,6 +91,11 @@ import { ErrorInterceptor } from './_interceptors/error.interceptor';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptor,
       multi: true,
     }
   ],

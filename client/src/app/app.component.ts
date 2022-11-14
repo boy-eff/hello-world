@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { UserAccessToken } from './_models/user-access-token';
 import { AccountService } from './_services/account.service';
+import { LoadingService } from './_services/loading.service';
 
 
 @Component({
@@ -10,12 +12,23 @@ import { AccountService } from './_services/account.service';
 })
 export class AppComponent implements OnInit {
   title = 'client';
-  constructor(private accountService : AccountService)
+  constructor(private accountService : AccountService, 
+    private loadingService: LoadingService, private spinner: NgxSpinnerService)
   {
 
   }
   ngOnInit(): void {
     this.setCurrentUser();
+    this.loadingService.loading$.subscribe((value: boolean) => {
+      if (value)
+      {
+        this.spinner.show();
+      }
+      else
+      {
+        this.spinner.hide();
+      }
+    })
   }
   
   setCurrentUser() {

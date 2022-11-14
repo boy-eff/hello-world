@@ -4,7 +4,7 @@
     border border-2 rounded w-50 mx-auto pt-4 pb-4" *ngIf="(member$ | async) as member">
     <div class="d-flex flex-column img-container">
         <img
-        [src] = "member.photoUrl !== null ? member.photoUrl : '/assets/default-picture.png'"
+        [src] = "member.photoUrl ? member.photoUrl : '/assets/default-picture.png'"
         alt=""
         width="300"
         height="300"
